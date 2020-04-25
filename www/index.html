@@ -13,40 +13,40 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700&display=swap"
           rel="stylesheet">
-    <script src="JavaScript/form.js"></script>
+    <script src="HTML/form.js"></script>
 </head>
 <body>
-
 
 <div id="landing">
     <h2>Welcome to</h2>
     <h1>Name thingy</h1>
-    <div class="button white-fill" onclick="signinopen()"><p>Sign in</p></div>
-    <div class="button" onclick="createopen()"><p>Create account</p></div>
+    <div class="button white-fill" onclick="setTimeout(signinopen,200); fadeout()"><p>Sign in</p></div>
+    <div class="button" onclick="setTimeout(createopen,200); fadeout()"><p>Create account</p></div>
 </div>
 
 <div id="create">
     <h2>Create account</h2>
-    <label for="fname" id="fnameLabel">First name:</label><br>
+    <hr>
+    <label for="fname">First name:</label><br>
     <input id="fname" name="fname" type="text"><br>
-    <label for="lname" id="lnameLabel">Last name:</label><br>
+    <label for="lname">Last name:</label><br>
     <input id="lname" name="lname" type="text"><br>
-    <label for="username" id="usernameLabel">Username:</label><br>
-    <input id="username" name="username" type="text"><br>
-    <label for="password" id="passwordLabel">Password:</label><br>
-    <input id="password" name="password" type="text"><br>
-    <label for="email" id="emailLabel">Email:</label><br>
+    <label for="lname">Password:</label><br>
+    <label for="password"></label>
+    <input id="password" name="password" type="password"><br>
+    <label for="email">Email:</label><br>
     <input id="email" name="email" type="text"><br>
-    <label for="phone" id="phoneLabel">Phone Number (optional):</label><br>
+    <label for="phone">Phone Number:</label><br>
     <input id="phone" name="phone" type="text"><br>
-     <div class="button" onclick="submitcreate()">Create account</div>
+    <div class="button" onclick="submitcreate()">Create account</div>
 </div>
 
 <div id="sign-in">
     <h2>Sign in</h2>
-    <label for="eusername" id="eusernameLabel">Username:</label><br>
-    <input id="eusername" name="eusername" type="text"><br>
-    <label for="epassword" id="epasswordLabel">Password:</label><br>
+    <hr>
+    <label for="eemail">Email:</label><br>
+    <input id="eemail" name="eemail" type="text"><br>
+    <label for="epassword">Password:</label><br>
     <input id="epassword" name="epassword" type="password"><br>
     <div class="button" onclick="submitsignin()">Sign in</div>
 </div>
@@ -93,6 +93,9 @@
     <path class="cls-1"
           d="M0,22.17S.53,14.33,84.6,2.68s273.48,11.39,435,136C367.11,323.24,199,318.17,1,287.17,1,181.17,0,22.17,0,22.17Z"/>
 </svg>
+
+<div id="stars"></div>
+<div id="stars2"></div>
 
 <!--DATABASE STUFF HERE: PLEASE PUT ALL SCRIPT TAGS BENEATH THIS PLS-->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
