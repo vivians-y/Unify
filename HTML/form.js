@@ -15,3 +15,12 @@ function submitform()
     document.getElementById("phonedisp").innerHTML = phone;
 
 }
+function submittask()
+{
+    let task = document.getElementById("task").value;
+    let location = document.getElementById("location").value;
+    document.getElementById("tasktitle").innerHTML ="Task: ";
+    document.getElementById("locationtitle").innerHTML = "Location:";
+    document.getElementById("taskdisp").innerHTML = task;
+    document.getElementById("locationdisp").innerHTML = location;
+}
