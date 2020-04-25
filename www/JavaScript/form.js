@@ -69,10 +69,10 @@ function submitcreate2(newUser, prevUsers){
         }
     }
 
-    // console.log("hi");
-
     pushUser(newUser);
-    window.location.href = "./HTML/profile.html";
+
+    // TODO: pass on user information to next page
+    // window.location.href = "./HTML/profile.html";
 }
 
 function submittask()
@@ -88,10 +88,57 @@ function submittask()
 
 function submitsignin()
 {
-    let email = document.getElementById("eemail").value;
+    let user = document.getElementById("eusername").value;
     let password = document.getElementById("epassword").value;
-    window.location.href = "profile.html";
 
+    let valid = true;
+    // input validation
+    if(user.length <= 0 || user.includes(":") || user.includes(";")){
+        let e = document.getElementById("eusernameLabel");
+        e.innerText = "Invalid " + e.innerText;
+        e.classList.add("invalidField");
+        valid = false;
+    }
+    if(password.length <= 0 || password.includes(":") || password.includes(";")){
+        let e = document.getElementById("epasswordLabel");
+        e.innerText = "Invalid " + e.innerText;
+        e.classList.add("invalidField");
+        valid = false;
+    }
+    if(!valid){
+        return;
+    }
+
+    getAllUsers(function (prevUsers) {
+        submitsignin2(user, password, prevUsers);
+    });
+}
+// callback because getAllUsers is asynchoronous :/
+function submitsignin2(username, password, prevUsers) {
+    let newUser = null;
+    for (let i = 0; i < prevUsers.length; i++) {
+        console.log(`curr: user: ${prevUsers[i].username}, pass: ${prevUsers[i].passw}`);
+        console.log(`new: user: ${username}, pass: ${password}`);
+        if(prevUsers[i].username == username && prevUsers[i].passw == password){
+            newUser = prevUsers[i];
+            console.log("matching info");
+            break;
+        }
+    }
+    if(newUser == null){
+        console.log("Incorrect login");
+        let e = document.getElementById("eusernameLabel");
+        e.innerText = "Incorrect Username/Password";
+        e.classList.add("invalidField");
+        e = document.getElementById("epasswordLabel");
+        e.innerText = "Incorrect Username/Password";
+        e.classList.add("invalidField");
+        return;
+    }
+
+    // TODO: pass on user information to next page
+    console.log("Log in successful for user: " + newUser);
+    // window.location.href = "./HTML/profile.html";
 }
 
 function createopen() {
