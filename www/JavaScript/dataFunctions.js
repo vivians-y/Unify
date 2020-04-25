@@ -11,21 +11,25 @@ function getTaskData(){
 
 function filterTasks(filterType){ //Filter types are "VolunteeringOnly", "Food&WaterOnly", "LendingOnly", "UrgencyAtLeast2", "UrgencyAtLeast3", "UrgencyAtLeast4"
 	
-	getAllTasks(); //Refreshes tasks
-	
-	taskList.push(new Task("Help", "Ted", "Volunteering", "I'm dying", 5, "My House"));
+	//getAllTasks(); //Refreshes tasks
 	
 	for(i=0; i < taskList.length; i++){ //Removes tasks that don't fit criteria
 		if(filterType == "VolunteeringOnly"){
-			console.log("Volunteering Only");
+			if(taskList[i].taskType != "Volunteering"){
+				taskList.splice(i);
+			}
 		}
 
 		else if (filterType == "Food&WaterOnly"){
-			console.log("Food & Water Only");
+			if(taskList[i].taskType != "Food & Water"){
+				taskList.splice(i);
+			}
 		}
 
 		else if (filterType == "LendingOnly"){
-			console.log("Lending Only");
+			if(taskList[i].taskType != "Lending"){
+				taskList.splice(i);
+			}
 		}
 	}
 }

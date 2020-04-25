@@ -1,4 +1,4 @@
-class User{
+class user{
 
 	constructor(firstName = "",lastName = "",username = "",passw = ""){
         this.firstName = firstName;
