@@ -1,0 +1,104 @@
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    scrollbar-width: thin;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-block-start: 0;
+    margin-block-end: 0;
+
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    margin: 0;
+    font-family: 'Didact Gothic', "Roboto Light", Helvetica, Arial, sans-serif;
+    background-color: rgb(35, 23, 85);
+    color: white;
+    -ms-overflow-x: hidden;
+    /*overflow-y: overlay; <<No longer supported*/
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+h1 {
+    margin-block-start: 2vh;
+    margin-block-end: 15vh;
+    font-size: calc(60px + 2vw);
+    font-weight: 500;
+}
+
+h2 {
+
+    font-size: calc(30px + 1vw);
+    font-weight: 500;
+}
+
+.button {
+    height: calc(50px + 1.5vw);
+    width: calc(259px + 5vw);
+    border-radius: 1.5vw;
+    margin: 15px;
+    font-size: calc(15px + 1vw);
+    font-weight: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.white-fill {
+    background-color: white;
+    color: rgb(35, 23, 85);
+
+}
+
+.not-white-fill {
+    border-style: solid;
+    background-color: rgba(255, 255, 255, .1);
+    border-width: 1px;
+}
+
+svg {
+    position: absolute;
+    z-index: -1;
+
+}
+
+#leaf-uno {
+    top: calc(100px - 5vh);
+    left: 0;
+    height: calc(35vw + 20vh);
+}
+
+#leaf-dos {
+    top: calc(200px + 40vw - 15vw);
+    height: calc(15vw + 15vh);
+    left: 0;
+}
+
+#squiggle-uno {
+    right: 0;
+    bottom: 0;
+    height: calc(30vw + 20vh);
+}
