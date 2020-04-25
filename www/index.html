@@ -27,16 +27,17 @@
 <div id="create">
     <h2>Create account</h2>
     <hr>
-    <label for="fname">First name:</label><br>
+    <label for="fname" id="fnameLabel">First name:</label><br>
     <input id="fname" name="fname" type="text"><br>
-    <label for="lname">Last name:</label><br>
+    <label for="lname" id="lnameLabel">Last name:</label><br>
     <input id="lname" name="lname" type="text"><br>
-    <label for="lname">Password:</label><br>
-    <label for="password"></label>
-    <input id="password" name="password" type="password"><br>
-    <label for="email">Email:</label><br>
+    <label for="username" id="usernameLabel">Username:</label><br>
+    <input id="username" name="username" type="text"><br>
+    <label for="password" id="passwordLabel">Password:</label><br>
+    <input id="password" name="password" type="text"><br>
+    <label for="email" id="emailLabel">Email:</label><br>
     <input id="email" name="email" type="text"><br>
-    <label for="phone">Phone Number:</label><br>
+    <label for="phone" id="phoneLabel">Phone Number (optional):</label><br>
     <input id="phone" name="phone" type="text"><br>
     <div class="button" onclick="submitcreate()">Create account</div>
 </div>
@@ -44,9 +45,9 @@
 <div id="sign-in">
     <h2>Sign in</h2>
     <hr>
-    <label for="eemail">Email:</label><br>
-    <input id="eemail" name="eemail" type="text"><br>
-    <label for="epassword">Password:</label><br>
+    <label for="eusername" id="eusernameLabel">Username:</label><br>
+    <input id="eusername" name="eusername" type="text"><br>
+    <label for="epassword" id="epasswordLabel">Password:</label><br>
     <input id="epassword" name="epassword" type="password"><br>
     <div class="button" onclick="submitsignin()">Sign in</div>
 </div>
