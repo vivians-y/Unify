@@ -160,3 +160,7 @@ function signinopen() {
 function fadeout() {
     document.getElementById("landing").classList.add("fade-out");
 }
+
+function createtask() {
+    document.getElementById("taskform").style.opacity = "1";
+}

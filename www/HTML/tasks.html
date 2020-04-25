@@ -13,6 +13,8 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700&display=swap"
           rel="stylesheet">
+    <script src="../JavaScript/form.js"></script>
+
 </head>
 <body class="tasks">
 
@@ -100,6 +102,16 @@
         <a href="mailto:potatoes"><p>potato@mail.com</p></a>
     </li>
 </ul>
+
+<div id="addtask" onclick="createtask()">insert create icon</div>
+
+<div id="taskform">
+    <label for="task">Enter the task:</label><br>
+    <input id="task" name="fname" type="text"><br>
+    <label for="location">Enter your location</label><br>
+    <input id="location" name="lname" type="text"><br>
+    <button onclick="submittask()">Hello</button>
+</div>
 
 <!--DATABASE STUFF HERE: PLEASE PUT ALL SCRIPT TAGS BENEATH THIS PLS-->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
