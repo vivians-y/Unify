@@ -6,17 +6,7 @@ class task{
 	var taskUrgency;		//Task urgency is an integer from 1-5
 	var taskLocation;
 	
-	
-    constructor(){
-        this.taskName = "";
-		this.taskCreatorUsername = "";
-		this.taskType = "";
-		this.taskDescription = "";
-		this.taskUrgency = 0;
-		this.taskLocation = "";
-    }
-	
-	constructor(taskName, taskCreatorUsername, taskType, taskDescription, taskUrgency, taskLocation){
+	constructor(taskName = "", taskCreatorUsername = "", taskType = "", taskDescription = "", taskUrgency = 0, taskLocation = ""){
 		this.taskName = taskName;
 		this.taskCreatorUsername = taskCreatorUsername;
 		this.taskType = taskType;
