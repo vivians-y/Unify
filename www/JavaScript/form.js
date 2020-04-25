@@ -69,7 +69,12 @@ function submitcreate2(newUser, prevUsers){
         }
     }
 
-    pushUser(newUser);
+    pushUser(newUser, function () {
+        console.log("User set to: " + newUser.username);
+        // save user
+        sessionStorage.setItem("currentUser", JSON.stringify(newUser));
+        window.location.href = "./HTML/profile.html";
+    });
 
     // TODO: pass on user information to next page
     // window.location.href = "./HTML/profile.html";
@@ -136,9 +141,10 @@ function submitsignin2(username, password, prevUsers) {
         return;
     }
 
-    // TODO: pass on user information to next page
-    console.log("Log in successful for user: " + newUser);
-    // window.location.href = "./HTML/profile.html";
+    console.log("User set to: " + username);
+    // save user
+    sessionStorage.setItem("currentUser", JSON.stringify(newUser));
+    window.location.href = "./HTML/profile.html";
 }
 
 function createopen() {
@@ -149,4 +155,8 @@ function createopen() {
 function signinopen() {
     document.getElementById("landing").style.display = "none";
     document.getElementById("sign-in").style.display = "block";
+}
+
+function fadeout() {
+    document.getElementById("landing").classList.add("fade-out");
 }

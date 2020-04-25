@@ -36,7 +36,7 @@ function processUserQuery(q) {
 }
 
 // adds a new user to the database all validation and duplicate checking should be done elsewhere
-function pushUser(user){
+function pushUser(user, callback = function () {}){
     let db = firebase.firestore();
 
     db.collection(userAccountDatabaseName).add({
@@ -54,6 +54,7 @@ function pushUser(user){
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
         user.uuid = docRef.id;
+        setTimeout(callback(), 50);
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
@@ -92,7 +93,7 @@ function processTaskQuery(q) {
 }
 
 // adds a new user to the database all validation and duplicate checking should be done elsewhere
-function pushTask(task){
+function pushTask(task, callback = function () {}){
     let db = firebase.firestore();
 
     db.collection(taskDatabaseName).add({
@@ -107,6 +108,7 @@ function pushTask(task){
         .then(function(docRef) {
             console.log("Document written with ID: ", docRef.id);
             task.uuid = docRef.id;
+            setTimeout(callback(), 50);
         })
         .catch(function(error) {
             console.error("Error adding document: ", error);

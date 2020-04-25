@@ -39,8 +39,49 @@
 
 <img id="profile-pic" src="Assets/hand.svg">
 <h2>Profile</h2>
-<h3>Name</h3>
-<h3>Email</h3>
-<h3>Potatos</h3>
+<h3 id="profileUsername">Username</h3>
+<h3 id="profileKarma">Karma</h3>
+<h3 id="profileName">Name</h3>
+<h3 id="profileEmail">Email</h3>
+<h3 id="profilePhone">Phone Number</h3>
+<h3 id="profileLocation">(Latitude, longitude)</h3>
+
+<!--DATABASE STUFF HERE: PLEASE PUT ALL SCRIPT TAGS BENEATH THIS PLS-->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyD3akQnGqoC7-7w9FsbkJpjlTmN8yh0Skc",
+        authDomain: "earth-x-hacks-275317.firebaseapp.com",
+        databaseURL: "https://earth-x-hacks-275317.firebaseio.com",
+        projectId: "earth-x-hacks-275317",
+        storageBucket: "earth-x-hacks-275317.appspot.com",
+        messagingSenderId: "638164559327",
+        appId: "1:638164559327:web:0a7271c7ed1a41522c906a"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // console.log(firebase);
+</script>
+
+<script src="../JavaScript/user.js"></script>
+<script src="../JavaScript/task.js"></script>
+
+<script src="../JavaScript/dataLoaders.js"></script>
+
+<script>
+
+</script>
+
 </body>
 </html>
