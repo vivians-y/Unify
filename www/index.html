@@ -6,14 +6,14 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-    <link href="main_style.css" rel="stylesheet">
+    <link href="./HTML/main_style.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700&subset=latin,latin-ext'
           rel='stylesheet' type='text/css'/>
     <link href="https://fonts.googleapis.com/css?family=Didact+Gothic:100,200,300,400,500,600,700&display=swap"
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700&display=swap"
           rel="stylesheet">
-    <script src="./form.js"></script>
+    <script src="./HTML/form.js"></script>
 </head>
 <body>
 
@@ -91,5 +91,36 @@
     <path class="cls-1"
           d="M0,22.17S.53,14.33,84.6,2.68s273.48,11.39,435,136C367.11,323.24,199,318.17,1,287.17,1,181.17,0,22.17,0,22.17Z"/>
 </svg>
+
+<!--DATABASE STUFF HERE: PLEASE PUT ALL SCRIPT TAGS BENEATH THIS PLS-->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyD3akQnGqoC7-7w9FsbkJpjlTmN8yh0Skc",
+        authDomain: "earth-x-hacks-275317.firebaseapp.com",
+        databaseURL: "https://earth-x-hacks-275317.firebaseio.com",
+        projectId: "earth-x-hacks-275317",
+        storageBucket: "earth-x-hacks-275317.appspot.com",
+        messagingSenderId: "638164559327",
+        appId: "1:638164559327:web:0a7271c7ed1a41522c906a"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    console.log(firebase);
+</script>
+
+<script src="./JavaScript/dataLoaders.js"></script>
+
 </body>
 </html>
