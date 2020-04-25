@@ -57,7 +57,6 @@ h2 {
 
 .button {
     height: calc(50px + 1.5vw);
-    width: calc(259px + 5vw);
     border-radius: 1.5vw;
     margin: 15px;
     font-size: calc(15px + 1vw);
@@ -74,6 +73,25 @@ h2 {
     background-color: white;
     color: rgb(35, 23, 85);
 
+}
+
+input{
+    height: calc(20px + 1.5vw);
+    width: calc(40vw);
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 1px;
+    background-color: transparent;
+    color: white;
+    outline: none;
+    margin: 15px;
+}
+
+input:focus{
+    border: 2px solid rgba(255,255,255,1);
+}
+
+label{
+    margin-top: 40px;
 }
 
 svg {
@@ -139,4 +157,201 @@ li:before {
     content: " ";
     display: block;
     border-bottom: 1px solid white;
+}
+
+#create, #sign-in {
+    display: none;
+}
+
+#profile-pic {
+    width: 20vh;
+}
+
+header {
+    z-index: 2;
+    width: 100%;
+    padding: 10px calc(4vw + 10px);
+    top: 0;
+    height: 100px;
+    float: right;
+    position: fixed;
+    display: block;
+}
+
+.header-no-color {
+    background: transparent;
+}
+
+.header-logo {
+    margin: 0 15px;
+    padding: 10px 20px 0;
+    border-style: none;
+    float: left;
+    position: relative;
+}
+
+nav {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-inline-flexbox;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    float: right;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+nav a {
+    padding: 20px;
+    text-align: right;
+    margin: 10px;
+    position: relative;
+    transition: 0.15s ease-out;
+}
+
+nav a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    top: 10%;
+    right: 50%;
+    background: rgba(255, 255, 255, 0.26);
+    border-radius: 2px;
+    transition: all .25s ease-out;
+    height: 80%;
+    bottom: 10%;
+}
+
+nav a:hover:after {
+    right: 0;
+    background: rgba(255, 255, 255, 0.26);
+    width: 100%;
+}
+
+#hamburger, .hamburger-icon {
+    display: none;
+}
+
+.hamburger-menu {
+    background-color: rgb(35, 23, 85);
+    height: 100vh;
+    width: 100vw;
+    left: 0;
+    top: -100vh;
+    position: absolute;
+    transition: .5s ease-out;
+}
+
+
+
+@media (max-width: 842px) {
+
+    :root {
+        --top-adjust: 200px -12vw;
+    }
+
+    #intro {
+        right: 11%;
+        width: 75%;
+        left: 14%;
+        top: calc(120px + (174.16 - 120) * ((100vw - 375px) / (834 - 375)));
+    }
+
+    /* =Scrollbar
+    ------------------------------------------ */
+    .scrollable {
+        margin-top: calc((-100vw + 834px) / 8 + 100px);
+        overflow-x: hidden;
+    }
+
+    body::-webkit-scrollbar {
+        display: none;
+        width: 0;
+    }
+
+    body::-webkit-scrollbar-thumb {
+        display: none;
+    }
+
+    /* =Header
+    ------------------------------------------ */
+    nav {
+        transition: .5s ease-out;
+        font-size: larger;
+        top: -100vh;
+        position: absolute;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-inline-flexbox;
+        display: -webkit-inline-flex;
+        display: inline-flex;
+        flex-direction: column;
+        float: left;
+        left: calc(50%);
+    }
+
+    nav a {
+        left: -50%;
+    }
+
+    header {
+        padding: 15px;
+    }
+
+    .header-logo img {
+        width: calc(48px - (834px - 100vw) / 40);
+    }
+
+    .header-logo {
+        padding: 20px 20px 0;
+        left: calc(14% - 30px);
+        top: -10px;
+        margin: 0;
+    }
+
+    .hamburger-icon {
+        display: block;
+        position: relative;
+        width: calc(48px - (834px - 100vw) / 40);
+        float: right;
+        margin: 10px calc(14% - 30px) 20px 20px;
+        box-sizing: content-box;
+        z-index: 1;
+    }
+
+
+    .st0 {
+        fill: none;
+    }
+
+    .st1 {
+        fill: rgba(255, 255, 255, .8);
+    }
+
+    #hamburger {
+        display: block;
+        position: absolute;
+        width: calc(48px - (834px - 100vw) / 40);
+        height: calc(48px - (834px - 100vw) / 40);
+        float: right;
+        right: 10px;
+        margin: 10px calc(14% - 30px) 20px 20px;
+        box-sizing: content-box;
+        opacity: 0;
+        z-index: 2;
+    }
+
+    #hamburger:checked ~ nav {
+        top: 60px;
+    }
+
+    #hamburger:checked ~ .hamburger-menu {
+        top: 0;
+    }
 }

@@ -13,12 +13,52 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700&display=swap"
           rel="stylesheet">
+    <script src="./form.js"></script>
 </head>
 <body>
-<h2>Welcome to</h2>
-<h1>Name thingy</h1>
-<div class="button white-fill"><p>Sign in</p></div>
-<div class="button"><p>Create account</p></div>
+
+
+<div id="landing">
+    <h2>Welcome to</h2>
+    <h1>Name thingy</h1>
+    <div class="button white-fill" onclick="signinopen()"><p>Sign in</p></div>
+    <div class="button" onclick="createopen()"><p>Create account</p></div>
+</div>
+
+<div id="create">
+    <h2>Create account</h2>
+    <label for="fname">First name:</label><br>
+    <input id="fname" name="fname" type="text"><br>
+    <label for="lname">Last name:</label><br>
+    <input id="lname" name="lname" type="text"><br>
+    <label for="lname">Password:</label><br>
+    <input id="password" name="password" type="password"><br>
+    <label for="email">Email:</label><br>
+    <input id="email" name="email" type="text"><br>
+    <label for="phone">Phone Number:</label><br>
+    <input id="phone" name="phone" type="text"><br>
+     <div class="button" onclick="submitcreate()">Create account</div>
+</div>
+
+<div id="sign-in">
+    <h2>Sign in</h2>
+    <label for="eemail">Email:</label><br>
+    <input id="eemail" name="eemail" type="text"><br>
+    <label for="epassword">Password:</label><br>
+    <input id="epassword" name="epassword" type="password"><br>
+    <div class="button" onclick="submitsignin()">Sign in</div>
+</div>
+
+
+<div class="title" id="fnametitle"></div>
+<div id="fnamedisp"></div>
+<div class="title" id="lnametitle"></div>
+<div id="lnamedisp"></div>
+<div class="title" id="emailtitle"></div>
+<div id="emaildisp"></div>
+<div class="title" id="phonetitle"></div>
+<div id="phonedisp"></div>
+
 <svg id="leaf-uno" viewBox="0 0 629.41 561.17" xmlns="http://www.w3.org/2000/svg">
     <defs>
         <style>.cls-1 {
@@ -48,8 +88,8 @@
             opacity: 0.58;
         }</style>
     </defs>
-            <path class="cls-1"
-                  d="M0,22.17S.53,14.33,84.6,2.68s273.48,11.39,435,136C367.11,323.24,199,318.17,1,287.17,1,181.17,0,22.17,0,22.17Z"/>
+    <path class="cls-1"
+          d="M0,22.17S.53,14.33,84.6,2.68s273.48,11.39,435,136C367.11,323.24,199,318.17,1,287.17,1,181.17,0,22.17,0,22.17Z"/>
 </svg>
 </body>
 </html>
