@@ -1,17 +1,11 @@
 const userAccountDatabaseName = "userAccounts";
 const taskDatabaseName = "tasks";
 
-// pushUser(new User("Troy", "Lee", "eelyort", "password", 0));
+// pushUser(new User("Troy", "Lee", "eelyort", "password", "~@gmail.com", "~~~"));
 // pushTask(new Task("Sample 1", "eelyort", "Fetch", "Please go get me food.", 0, 120, 50));
 
-setTimeout(function () {
-    console.log("timeout triggered");
-    getAllUsers();
-    getAllTasks();
-}, 1000);
-
 // returns an array of all users stored
-function getAllUsers(){
+function getAllUsers(callback){
     let db = firebase.firestore();
 
     // db.collection("users").get().then((querySnapshot) => {
@@ -24,7 +18,7 @@ function getAllUsers(){
     // });
 
     db.collection(userAccountDatabaseName).get().then((querySnapshot) => {
-        return processUserQuery(querySnapshot);
+        callback(processUserQuery(querySnapshot));
     });
 }
 
@@ -34,7 +28,7 @@ function processUserQuery(q) {
 
     for (let i = 0; i < arr.length; i++) {
         let curr = arr[i];
-        a.push(new User(curr.get("firstName"), curr.get("lastName"), curr.get("username"), curr.get("password"), curr.id));
+        a.push(new User(curr.get("firstName"), curr.get("lastName"), curr.get("username"), curr.get("password"), curr.get("email"), curr.get("phoneNumber"), curr.get("createdTasks"), curr.id, curr.get("karma")));
     }
 
     console.log(`Returning a: ${a}`);
@@ -50,10 +44,14 @@ function pushUser(user){
         lastName: user.lastName,
         username: user.username,
         password: user.passw,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        createdTasks: user.createdTasks,
         karma: user.karma
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
+        user.uuid = docRef.id;
     })
     .catch(function(error) {
         console.error("Error adding document: ", error);
@@ -61,7 +59,7 @@ function pushUser(user){
 }
 
 // returns an array of all tasks stored
-function getAllTasks(){
+function getAllTasks(callback){
     let db = firebase.firestore();
 
     // db.collection("users").get().then((querySnapshot) => {
@@ -74,7 +72,7 @@ function getAllTasks(){
     // });
 
     db.collection(taskDatabaseName).get().then((querySnapshot) => {
-        return processUserQuery(querySnapshot);
+        callback(processUserQuery(querySnapshot));
     });
 }
 
@@ -106,6 +104,7 @@ function pushTask(task){
     })
         .then(function(docRef) {
             console.log("Document written with ID: ", docRef.id);
+            task.uuid = docRef.id;
         })
         .catch(function(error) {
             console.error("Error adding document: ", error);
