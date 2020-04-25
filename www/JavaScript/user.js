@@ -1,6 +1,6 @@
 class User{
 
-	constructor(firstName = "",lastName = "",username = "",passw = "", email = "", phoneNumber = "", longitude = "", latitude = "", createdTasks = [], uuid = "", karma = 0){
+	constructor(firstName = "",lastName = "",username = "",passw = "", email = "", phoneNumber = "", longitude = -1, latitude = -1, createdTasks = [], uuid = "", karma = 0){
         this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
