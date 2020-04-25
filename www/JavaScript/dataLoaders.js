@@ -28,7 +28,7 @@ function processUserQuery(q) {
 
     for (let i = 0; i < arr.length; i++) {
         let curr = arr[i];
-        a.push(new User(curr.get("firstName"), curr.get("lastName"), curr.get("username"), curr.get("password"), curr.get("email"), curr.get("phoneNumber"), curr.get("createdTasks"), curr.id, curr.get("karma")));
+        a.push(new User(curr.get("firstName"), curr.get("lastName"), curr.get("username"), curr.get("password"), curr.get("email"), curr.get("phoneNumber"), curr.get("longitude"), curr.get("latitude"), curr.get("createdTasks"), curr.id, curr.get("karma")));
     }
 
     console.log(`Returning a: ${a}`);
@@ -47,7 +47,9 @@ function pushUser(user){
         email: user.email,
         phoneNumber: user.phoneNumber,
         createdTasks: user.createdTasks,
-        karma: user.karma
+        karma: user.karma,
+        longitude: user.longitude,
+        latitude: user.latitude
     })
     .then(function(docRef) {
         console.log("Document written with ID: ", docRef.id);
