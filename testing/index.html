@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body style="background-color: aquamarine">
+
+<p id="text">Hello here is some text!</p>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<!-- Add Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-firestore.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+        apiKey: "AIzaSyD3akQnGqoC7-7w9FsbkJpjlTmN8yh0Skc",
+        authDomain: "earth-x-hacks-275317.firebaseapp.com",
+        databaseURL: "https://earth-x-hacks-275317.firebaseio.com",
+        projectId: "earth-x-hacks-275317",
+        storageBucket: "earth-x-hacks-275317.appspot.com",
+        messagingSenderId: "638164559327",
+        appId: "1:638164559327:web:0a7271c7ed1a41522c906a"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    console.log(firebase);
+</script>
+<script>
+    let db = firebase.firestore();
+
+    console.log(db);
+
+    console.log(db.collection("users"));
+
+    // // Add a second document with a generated ID.
+    // db.collection("users").add({
+    //     first: "Alan",
+    //     middle: "Mathison",
+    //     last: "Turing",
+    //     born: 1912
+    // })
+    // .then(function(docRef) {
+    //     console.log("Document written with ID: ", docRef.id);
+    // })
+    // .catch(function(error) {
+    //     console.error("Error adding document: ", error);
+    // });
+
+    let txt = db.collection("users").get();
+
+    db.collection("users").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            // console.log(`${doc.id} => ${doc.data()}`);
+            txt += `\n${doc.id} => ${doc.data()}`;
+            console.log("hi: " + txt);
+            document.getElementById("text").innerText = txt;
+        });
+    });
+
+    // console.log("Hi: " + db.collection("users"));
+    // console.log("text final: " + txt);
+    // document.getElementById("text").innerText = txt;
+
+    console.log("DONE");
+</script>
+</body>
+</html>
