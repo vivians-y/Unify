@@ -1,6 +1,5 @@
 // create new account
-function submitcreate()
-{
+function submitcreate() {
     let fn = document.getElementById("fname").value;
     let ln = document.getElementById("lname").value;
     let user = document.getElementById("username").value;
@@ -10,31 +9,31 @@ function submitcreate()
 
     let valid = true;
     // input validation
-    if(fn.length <= 0 || fn.includes(":") || fn.includes(";")){
+    if (fn.length <= 0 || fn.includes(":") || fn.includes(";")) {
         let e = document.getElementById("fnameLabel");
         e.innerText = "Invalid " + e.innerText;
         e.classList.add("invalidField");
         valid = false;
     }
-    if(ln.length <= 0 || ln.includes(":") || ln.includes(";")){
+    if (ln.length <= 0 || ln.includes(":") || ln.includes(";")) {
         let e = document.getElementById("lnameLabel");
         e.innerText = "Invalid " + e.innerText;
         e.classList.add("invalidField");
         valid = false;
     }
-    if(user.length <= 0 || user.includes(":") || user.includes(";")){
+    if (user.length <= 0 || user.includes(":") || user.includes(";")) {
         let e = document.getElementById("usernameLabel");
         e.innerText = "Invalid " + e.innerText;
         e.classList.add("invalidField");
         valid = false;
     }
-    if(pass.length <= 0 || pass.includes(":") || pass.includes(";")){
+    if (pass.length <= 0 || pass.includes(":") || pass.includes(";")) {
         let e = document.getElementById("passwordLabel");
         e.innerText = "Invalid " + e.innerText;
         e.classList.add("invalidField");
         valid = false;
     }
-    if(email.length <= 0 || email.includes(":") || email.includes(";")){
+    if (email.length <= 0 || email.includes(":") || email.includes(";")) {
         let e = document.getElementById("emailLabel");
         e.innerText = "Invalid " + e.innerText;
         e.classList.add("invalidField");
@@ -46,7 +45,7 @@ function submitcreate()
     //     e.classList.add("invalidField");
     //     valid = false;
     // }
-    if(!valid){
+    if (!valid) {
         return;
     }
 
@@ -56,12 +55,13 @@ function submitcreate()
         submitcreate2(newUser, prevUsers);
     });
 }
+
 // callback because getAllUsers is asynchoronous :/
-function submitcreate2(newUser, prevUsers){
+function submitcreate2(newUser, prevUsers) {
     console.log("submitcreate2");
 
     for (let i = 0; i < prevUsers.length; i++) {
-        if(prevUsers[i].username == newUser.username){
+        if (prevUsers[i].username == newUser.username) {
             let e = document.getElementById("usernameLabel");
             e.innerText = "Username Already Taken";
             e.classList.add("invalidField");
@@ -80,8 +80,7 @@ function submitcreate2(newUser, prevUsers){
     // window.location.href = "./HTML/profile.html";
 }
 
-function submittask()
-{
+function submittask() {
     let taskName = document.getElementById("taskName").value;
     let taskType = document.getElementById("taskType").value;
     let taskDescription = document.getElementById("taskDescription").value;
@@ -95,20 +94,20 @@ function submittask()
     */
 
     let valid = true;
-    if(taskName.length <= 0){
+    if (taskName.length <= 0) {
         let e = document.getElementById("taskNameLabel");
         e.innerText = "Invalid " + e.innerText;
         e.classList.add("invalidField");
         valid = false;
     }
-    if(taskDescription.length <= 0){
+    if (taskDescription.length <= 0) {
         let e = document.getElementById("taskDescriptionLabel");
         e.innerText = "Invalid " + e.innerText;
         e.classList.add("invalidField");
         valid = false;
     }
 
-    if(!valid){
+    if (!valid) {
         return;
     }
 
@@ -119,33 +118,32 @@ function submittask()
     });
 }
 
-function submittask2(newTask){
+function submittask2(newTask) {
 
     pushData(data, function () {
         console.log("Task Created");
     });
 }
 
-function submitsignin()
-{
+function submitsignin() {
     let user = document.getElementById("eusername").value;
     let password = document.getElementById("epassword").value;
 
     let valid = true;
     // input validation
-    if(user.length <= 0 || user.includes(":") || user.includes(";")){
+    if (user.length <= 0 || user.includes(":") || user.includes(";")) {
         let e = document.getElementById("eusernameLabel");
         e.innerText = "Invalid " + e.innerText;
         e.classList.add("invalidField");
         valid = false;
     }
-    if(password.length <= 0 || password.includes(":") || password.includes(";")){
+    if (password.length <= 0 || password.includes(":") || password.includes(";")) {
         let e = document.getElementById("epasswordLabel");
         e.innerText = "Invalid " + e.innerText;
         e.classList.add("invalidField");
         valid = false;
     }
-    if(!valid){
+    if (!valid) {
         return;
     }
 
@@ -153,19 +151,20 @@ function submitsignin()
         submitsignin2(user, password, prevUsers);
     });
 }
+
 // callback because getAllUsers is asynchoronous :/
 function submitsignin2(username, password, prevUsers) {
     let newUser = null;
     for (let i = 0; i < prevUsers.length; i++) {
         console.log(`curr: user: ${prevUsers[i].username}, pass: ${prevUsers[i].passw}`);
         console.log(`new: user: ${username}, pass: ${password}`);
-        if(prevUsers[i].username == username && prevUsers[i].passw == password){
+        if (prevUsers[i].username == username && prevUsers[i].passw == password) {
             newUser = prevUsers[i];
             console.log("matching info");
             break;
         }
     }
-    if(newUser == null){
+    if (newUser == null) {
         console.log("Incorrect login");
         let e = document.getElementById("eusernameLabel");
         e.innerText = "Incorrect Username/Password";
@@ -197,5 +196,13 @@ function fadeout() {
 }
 
 function createtask() {
-    document.getElementById("taskform").style.opacity = "1";
+    let x = document.getElementById("taskform");
+    let y = document.getElementById("addtask");
+    if (x.style.opacity === "0") {
+        x.style.opacity = "1";
+        y.classList.add("rotate135");
+    } else {
+        x.style.opacity = "0";
+        y.classList.remove("rotate135")
+    }
 }

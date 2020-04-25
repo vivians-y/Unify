@@ -110,10 +110,9 @@ label {
     margin-top: 40px;
 }
 
-svg {
+#leaf-dos, #leaf-uno, #squiggle-uno {
     position: absolute;
     z-index: -1;
-
 }
 
 .fade-out {
@@ -287,7 +286,6 @@ h3, p {
 
 h3 {
     font-size: calc(30px + 1vw);
-
     margin: 2px;
 }
 
@@ -326,16 +324,23 @@ h3 {
 
 #taskform {
     opacity: 0;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    padding: 40px;
+    background-color: #60569b;
+    z-index: 2;
+}
+
+.rotate135 {
+    transform: rotate(135deg);
 }
 
 #addtask{
-    right: 0;
-    bottom: 0;
+    right: 30px;
+    bottom: 30px;
     z-index: 4;
     position: absolute;
+    width: 80px;
+    height: 80px;
+    transition: .2s ease-out;
 }
 
 
