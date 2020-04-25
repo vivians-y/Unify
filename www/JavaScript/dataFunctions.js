@@ -16,7 +16,7 @@ function findUserByUsername(username){ //Returns position in userList array
 }
 
 
-function filterTasks(filterType){ //Filter types are "VolunteeringOnly", "Food&WaterOnly", "LendingOnly", "UrgencyAtLeast2", "UrgencyAtLeast3", "UrgencyAtLeast4", and "KarmaAtLeast100"
+function filterTasks(filterType){ //Filter types are "VolunteeringOnly", "Food&WaterOnly", "LendingOnly", "UrgencyAtLeast2", "UrgencyAtLeast3", "UrgencyAtLeast4", "KarmaAtLeast100", "Within1Mile" ,"Within5Miles", "Within10Miles", and "Within25Miles"
 	
 	//getAllTasks(); //Refreshes tasks
 	
@@ -47,6 +47,22 @@ function filterTasks(filterType){ //Filter types are "VolunteeringOnly", "Food&W
 
 		else if (filterType == "KarmaAtLeast100")
 			if(userList[findUserByUsername(taskList[i].taskCreatorUsername)].karma < 100)
+				taskList.splice(i);
+
+		else if (filterType == "Within1Mile")
+			if(getDistance() > 1)
+				taskList.splice(i);
+
+		else if (filterType == "Within5Miles")
+			if( > 5)
+				taskList.splice(i);
+
+		else if (filterType == "Within10Miles")
+			if( > 10)
+				taskList.splice(i);
+		
+		else if (filterType == "Within25Miles")
+			if( > 25)
 				taskList.splice(i);
 
 		else
