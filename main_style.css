@@ -1,0 +1,53 @@
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    scrollbar-width: thin;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    margin: 0;
+    font-family: 'Didact Gothic', "Roboto Light", Helvetica, Arial, sans-serif;
+    background-color: rgb(35,23,85);
+    color: white;
+    overflow-x: hidden;
+    -ms-overflow-x: hidden;
+    /*overflow-y: overlay; <<No longer supported*/
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+h1{
+    font-size: calc(40px + 3vw);
+}
+.button{
+    height: calc(20px + 5vw);
+    width: calc(50px + 25vw);
+    border-radius: 1.5vw;
+    margin: 20px;
+}
+
+.white-fill{
+    background-color: white;
+    color: rgb(35,23,85);
+}
