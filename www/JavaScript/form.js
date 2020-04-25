@@ -82,13 +82,48 @@ function submitcreate2(newUser, prevUsers){
 
 function submittask()
 {
-    let task = document.getElementById("task").value;
-    let location = document.getElementById("location").value;
+    let taskName = document.getElementById("taskName").value;
+    let taskType = document.getElementById("taskType").value;
+    let taskDescription = document.getElementById("taskDescription").value;
+    let taskUrgency = document.getElementById("taskUrgency").value;
+    let taskLongitude = getLongitude();
+    let taskLatitude = getLatitude();
     /*document.getElementById("tasktitle").innerHTML ="Task: ";
     document.getElementById("locationtitle").innerHTML = "Location:";
     document.getElementById("taskdisp").innerHTML = task;
     document.getElementById("locationdisp").innerHTML = location;
     */
+
+    let valid = true;
+    if(taskName.length <= 0){
+        let e = document.getElementById("taskNameLabel");
+        e.innerText = "Invalid " + e.innerText;
+        e.classList.add("invalidField");
+        valid = false;
+    }
+    if(taskDescription.length <= 0){
+        let e = document.getElementById("taskDescriptionLabel");
+        e.innerText = "Invalid " + e.innerText;
+        e.classList.add("invalidField");
+        valid = false;
+    }
+
+    if(!valid){
+        return;
+    }
+
+    let newTask = new Task(taskName, taskType, taskDescription, taskUrgency, taskLongitude, taskLatitude);
+
+    getAllTasks(function () {
+        submittask2(newTask);
+    });
+}
+
+function submittask2(newTask){
+
+    pushData(data, function () {
+        console.log("Task Created");
+    });
 }
 
 function submitsignin()
