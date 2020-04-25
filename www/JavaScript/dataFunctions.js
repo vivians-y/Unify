@@ -50,19 +50,19 @@ function filterTasks(filterType){ //Filter types are "VolunteeringOnly", "Food&W
 				taskList.splice(i);
 
 		else if (filterType == "Within1Mile")
-			if(getDistance() > 1)
+			if(getDistance(localLongitude,localLatitude,taskList[i].taskLongitude,taskList[i].taskLatitude) > 1)
 				taskList.splice(i);
 
 		else if (filterType == "Within5Miles")
-			if( > 5)
+			if(getDistance(localLongitude,localLatitude,taskList[i].taskLongitude,taskList[i].taskLatitude) > 5)
 				taskList.splice(i);
 
 		else if (filterType == "Within10Miles")
-			if( > 10)
+			if(getDistance(localLongitude,localLatitude,taskList[i].taskLongitude,taskList[i].taskLatitude) > 10)
 				taskList.splice(i);
 		
 		else if (filterType == "Within25Miles")
-			if( > 25)
+			if(getDistance(localLongitude,localLatitude,taskList[i].taskLongitude,taskList[i].taskLatitude) > 25)
 				taskList.splice(i);
 
 		else
