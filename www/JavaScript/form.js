@@ -73,7 +73,7 @@ function submitcreate2(newUser, prevUsers){
         console.log("User set to: " + newUser.username);
         // save user
         sessionStorage.setItem("currentUser", JSON.stringify(newUser));
-        window.location.href = "./HTML/profile.html";
+        window.location.href = "./HTML/tasks.html";
     });
 
     // TODO: pass on user information to next page
@@ -179,7 +179,7 @@ function submitsignin2(username, password, prevUsers) {
     console.log("User set to: " + username);
     // save user
     sessionStorage.setItem("currentUser", JSON.stringify(newUser));
-    window.location.href = "./HTML/profile.html";
+    window.location.href = "./HTML/tasks.html";
 }
 
 function createopen() {
@@ -194,4 +194,8 @@ function signinopen() {
 
 function fadeout() {
     document.getElementById("landing").classList.add("fade-out");
+}
+
+function createtask() {
+    document.getElementById("taskform").style.opacity = "1";
 }
