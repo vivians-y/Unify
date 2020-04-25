@@ -65,18 +65,15 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-style: solid;
+    background-color: rgba(255, 255, 255, .1);
+    border-width: 1px;
 }
 
 .white-fill {
     background-color: white;
     color: rgb(35, 23, 85);
 
-}
-
-.not-white-fill {
-    border-style: solid;
-    background-color: rgba(255, 255, 255, .1);
-    border-width: 1px;
 }
 
 svg {
@@ -101,4 +98,45 @@ svg {
     right: 0;
     bottom: 0;
     height: calc(30vw + 20vh);
+}
+
+.task-item-container {
+    margin-top: 20px;
+    height: 90vh;
+    overflow-y: scroll;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.task-item {
+    min-height: 20vh;
+}
+
+.task-item img {
+    left: calc(20px + 25vw);
+    width: calc(20px + 5vh);
+    float: left;
+    position: absolute;
+}
+
+.task-item-container::-webkit-scrollbar {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+.task-item-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, .1);
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+li:before {
+    content: " ";
+    display: block;
+    border-bottom: 1px solid white;
 }
