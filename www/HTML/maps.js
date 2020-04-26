@@ -75,7 +75,7 @@ function callBackMegaCoolBoy(valout){
     getAllTasks(function (tasksOut) {
         // console.log("loadAllTasks callback");
         let mapOptions = {
-            zoom: 10,
+            zoom: 5.1,
             center: new google.maps.LatLng(valout.lat,valout.lng)
         };
         let map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -153,7 +153,9 @@ function showDist(latitude1,longitude1,latitude2,longitude2,directionsServiceT,d
     });
 }
 function giveDist(distanceArr){
-    return distanceArr[0][0];
+    let val = distanceArr[0][0];
+    let newval = val/5280;
+    return newval.toString();
 }
 function calcDistWithLatLon(lat1,long1,lat2,long2, callbackFunc){
     let origin = [new google.maps.LatLng(lat1,long1)];
@@ -189,7 +191,7 @@ function callback(response, status) {
                 var results = response.rows[i].elements;
                 for (var j = 0; j < results.length; j++) {
                     var element = results[j];
-                    var distance = element.distance.text;
+                    var distance = element.distance.value;
                     var duration = element.duration.text;
                     var from = origins[i];
                     var to = destinations[j];
