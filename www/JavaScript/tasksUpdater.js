@@ -285,6 +285,14 @@ function submittask() {
     }
     submitTask2(taskName, taskType, taskDescription, taskUrgency, timestamp, currUser, taskPos, valid);
 }
+function clearFields(){
+    document.getElementById("taskName").value = "";
+    document.getElementById("taskType").value = "";
+    document.getElementById("taskDesc").value = "";
+    document.getElementById("taskUrgency").value = "";
+    document.getElementById("taskPos").value = "";
+    document.getElementById("addtask").classList.remove("rotate135");
+}
 function submitTask2(taskName, taskType, taskDescription, taskUrgency, timestamp, currUser, taskPos, valid) {
     if (!valid) {
         return;
@@ -294,6 +302,8 @@ function submitTask2(taskName, taskType, taskDescription, taskUrgency, timestamp
 
     pushTask(newTask, function () {
         console.log("Task pushed successfully");
+        document.getElementById("taskform").style.display = "none";
+        clearFields();
         resetTasks();
     });
 }

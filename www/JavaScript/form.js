@@ -199,3 +199,6 @@ function testTextBoxes(){
     document.getElementById("task").placeholder = "Vivian Gay";
 
 }
+// function boxDisappear(){
+//     document.getElementById("taskform").style.display = "none";
+// }
