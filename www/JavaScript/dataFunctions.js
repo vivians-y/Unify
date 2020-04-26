@@ -1,11 +1,11 @@
-function findUserByUsername(username){ //Returns position in userList array
+function findUserByUsername(userList, username){ //Returns position in userList array
 	for(i=0; i < userList.length; i++)
 		if(userList[i].username == username)
 			return i;
 }
 
 
-function filterTasks(tastList, filterType){ //Filter types are "VolunteeringOnly", "Food&WaterOnly", "LendingOnly", "UrgencyAtLeast2", "UrgencyAtLeast3", "UrgencyAtLeast4", "KarmaAtLeast100", "Within1Mile" ,"Within5Miles", "Within10Miles", and "Within25Miles"
+function filterTasks(taskList, userList, filterType){ //Filter types are "VolunteeringOnly", "Food&WaterOnly", "LendingOnly", "UrgencyAtLeast2", "UrgencyAtLeast3", "UrgencyAtLeast4", "KarmaAtLeast100", "Within1Mile" ,"Within5Miles", "Within10Miles", and "Within25Miles"
 	
 	//getAllTasks(); //Refreshes tasks
 	
@@ -35,7 +35,7 @@ function filterTasks(tastList, filterType){ //Filter types are "VolunteeringOnly
 				taskList.splice(i);
 
 		else if (filterType == "KarmaAtLeast100")
-			if(userList[findUserByUsername(taskList[i].taskCreatorUsername)].karma < 100)
+			if(userList[findUserByUsername(userList,taskList[i].taskCreatorUsername)].karma < 100)
 				taskList.splice(i);
 
 		else if (filterType == "Within1Mile")
@@ -97,13 +97,26 @@ function sortTasks(taskList, sortType) {
 }
 
 function refreshTasksListUI(pageNum){	//Changes the UI of the task list UI depending on page number
-	// username
-	document.getElementById("profileUsername").innerText = `Username: ${currUser.username}`;
-	// karma
-	document.getElementById("profileKarma").innerText = `Karma: ${currUser.karma}`;
-	// name
-	document.getElementById("profileName").innerText = `Name: ${currUser.firstName} ${currUser.lastName}`;
-	// email
-	document.getElementById("profileEmail").innerText = `Email: ${currUser.email}`;
+	// update task 0
+	document.getElementById("task0").innerText = `Username: ${currUser.username}`;
+	// update task 1
+	document.getElementById("task1").innerText = `Karma: ${currUser.karma}`;
+	// update task 2
+	document.getElementById("task2").innerText = `Name: ${currUser.firstName} ${currUser.lastName}`;
+	// update task 3
+	document.getElementById("task3").innerText = `Email: ${currUser.email}`;
+	// update task 4
+
+	// update task 5
+
+	// update task 6
+	
+	// update task 7
+	
+	// update task 8
+	
+	// update task 9
+	
+
 }
 

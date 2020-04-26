@@ -1,4 +1,4 @@
-const taskTypes = ["volunteer", "food&water", "lending"];
+const taskTypes = ["Volunteering", "Food&Water", "Lending"];
 
 class Task{
 	constructor(taskName = "", taskCreatorUsername = "", taskType = "", taskDescription = "", taskUrgency = 0, taskLongitude = -1, taskLatitude = -1, timestamp = 0, uuid = ""){
