@@ -63,7 +63,7 @@ function loadNextTen(users) {
                         });
                     }
                     catch (e) {
-                        
+
                     }
                 }
                 else{
@@ -80,6 +80,7 @@ function loadNextTen(users) {
         }
     });
 }
+
 function loadNextTen2(currPos, users) {
     console.log("Top of loadNextTen2");
     console.log("distances: " + allDistances.toString());
