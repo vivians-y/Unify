@@ -69,6 +69,7 @@ function sortTasks(taskList, sortType) {
 		for(i = 1; i < taskList.length; i++){
 			let comparisonValue1;
 			let comparisonValue2;
+			let currUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
 			sorted = true;
 
@@ -81,10 +82,10 @@ function sortTasks(taskList, sortType) {
 				comparisonValue1 = taskList[i-1].taskUrgency;
 			}
 			else if(sortType == "Closest"){
-				comparisonValue2 = taskList[i].timestamp;
-				comparisonValue1 = taskList[i-1].timestamp;
+				comparisonValue2 = getDistance(currUser.longitude,currUser.latitude,taskList[i].taskLongitude,taskList[i].taskLatitude);
+				comparisonValue1 = getDistance(currUser.longitude,currUser.latitude,taskList[i-1].taskLongitude,taskList[i-1].taskLatitude);
 			}
-			if(comparisonValue2 > comparisonValue1){
+			if((sortType == "Urgency" && comparisonValue2 > comparisonValue1) || ((sortType == "Recent" || sortType == "Closest") && comparisonValue2 < comparisonValue1)){
 				let temp = taskList[i];
 				taskList[i] = taskList[i-1];
 				taskList[i-1] = temp;
@@ -92,4 +93,17 @@ function sortTasks(taskList, sortType) {
 			}
 		}
 	}
+	refreshTasksListUI(1);
 }
+
+function refreshTasksListUI(pageNum){	//Changes the UI of the task list UI depending on page number
+	// username
+	document.getElementById("profileUsername").innerText = `Username: ${currUser.username}`;
+	// karma
+	document.getElementById("profileKarma").innerText = `Karma: ${currUser.karma}`;
+	// name
+	document.getElementById("profileName").innerText = `Name: ${currUser.firstName} ${currUser.lastName}`;
+	// email
+	document.getElementById("profileEmail").innerText = `Email: ${currUser.email}`;
+}
+
