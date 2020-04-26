@@ -47,6 +47,25 @@ function initMap() {
     //directionsRenderer.setMap(map);
 
 }
+function getCurrPos(){
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            let pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            return(pos);
+        }, function() {
+            console.log("Browser could not find your location");
+        });
+    } else {
+        // Browser doesn't support Geolocation
+        console.log("Browser could not find your location because it was blocked or does not support.");
+    }
+}
+
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
@@ -80,7 +99,6 @@ function showDist(latitude1,longitude1,latitude2,longitude2,directionsServiceT,d
 }
 
 function calcDist(originArr, destinationArr){
-
     console.log(originArr);
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix(
