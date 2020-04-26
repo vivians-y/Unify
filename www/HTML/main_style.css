@@ -90,7 +90,7 @@ hr {
 }
 
 input {
-    height: calc(15px + 2vw + 2vh);
+    height: calc(15px + 1.5vw + 1.5vh);
     width: 80%;
     border: 1px solid rgba(255, 255, 255, .7);
     border-radius: 4px;
@@ -156,7 +156,7 @@ label {
 .task-item-container {
     position: absolute;
     bottom: 0;
-    height: 85vh;
+    height: 80vh;
     overflow-y: scroll;
     width: 100%;
     display: flex;
@@ -315,6 +315,49 @@ label {
     border-radius: 20px;
     padding: 10px 20px;
     margin: 10px 15px 20px;
+    height: calc(40px);
+}
+
+select {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -webkit-padding-end: 20px;
+    -moz-padding-end: 20px;
+    -webkit-padding-start: 2px;
+    -moz-padding-start: 2px;
+    background-color: rgba(255, 255, 255, .2); /* Fallback color if gradients are not supported */
+    border-radius: 2px;
+    border: none;
+    outline: transparent;
+    color: white;
+    font-size: inherit;
+    margin: 0;
+    overflow: hidden;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.small.button{
+    height: 30px;
+    width: 150px;
+    font-size: 15px;
+}
+
+select:active, select:hover {
+color: rgb(35, 23, 85);
+}
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border-color: #fff transparent transparent transparent;
 }
 
 .st0 {
@@ -476,7 +519,7 @@ h4 {
 
 #taskform {
     opacity: 1;
-    padding: 40px;
+    padding: 35px;
     background-color: #60569b;
     display: none;
     z-index: 2;
