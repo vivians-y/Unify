@@ -80,11 +80,12 @@ function callBackMegaCoolBoy(valout){
         };
         let map = new google.maps.Map(document.getElementById("map"), mapOptions);
         let tasks = tasksOut;
-        let testMarker = new google.maps.Marker({
-            position: {lat:valout.lat,lng :valout.lng},
-            title:"Gay"
-        });
-        testMarker.setMap(map);
+        // let testMarker = new google.maps.Marker({
+        //     position: {lat:valout.lat,lng :valout.lng},
+        //     title:"Gay"
+        // });
+        // testMarker.setMap(map);
+        let numTasks = 0;
         for(let i = 0; i<tasks.length;i++){
             if(tasks[i].taskLatitude==-1||tasks[i].taskLatitude==null||tasks[i].taskLongitude==0||tasks[i].taskLatitude==null){
             }
@@ -96,7 +97,9 @@ function callBackMegaCoolBoy(valout){
                 });
                 currMarker.setMap(map);
             }
+            numTasks++;
         }
+        console.log(numTasks);
     });
 
 }
