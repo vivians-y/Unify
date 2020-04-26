@@ -68,5 +68,39 @@ function filterTasks(filterType){ //Filter types are "VolunteeringOnly", "Food&W
 		else
 			console.log("Invalid filtering type");
 	}
+
 }
 
+function sortTasks(sortType) {
+	let sorted = false;
+	if(taskList.length == 1)
+		return;
+
+	while(!sorted){	//Does a bubble sort with the type of value being compared depending on sortType
+		for(i = 1; i < taskList.length; i++){
+			let comparisonValue1;
+			let comparisonValue2;
+
+			sorted = true;
+
+			if(sortType == "Recent"){
+				comparisonValue2 = taskList[i].timestamp;
+				comparisonValue1 = taskList[i-1].timestamp;
+			}
+			else if(sortType == "Urgency"){
+				comparisonValue2 = taskList[i].taskUrgency;
+				comparisonValue1 = taskList[i-1].taskUrgency;
+			}
+			else if(sortType == "Closest"){
+				comparisonValue2 = taskList[i].timestamp;
+				comparisonValue1 = taskList[i-1].timestamp;
+			}
+			if(comparisonValue2 > comparisonValue1){
+				let temp = taskList[i];
+				taskList[i] = taskList[i-1];
+				taskList[i-1] = temp;
+				sorted = false;
+			}
+		}
+	}
+}
