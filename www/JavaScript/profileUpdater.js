@@ -55,7 +55,7 @@ function giveTextBoxesShit() {
 // location
     if (currUser.latitude != null && currUser.longitude != null && currUser.latitude != -1 && currUser.longitude != -1) {
         document.getElementById("profileLatitudeEdit").placeholder = `Latitude: ${currUser.latitude.toFixed(3)}`;
-        document.getElementById("profileLongitudeEdit").placeholder = `Longitude ${currUser.longitude.toFixed(3)})`;
+        document.getElementById("profileLongitudeEdit").placeholder = `Longitude: ${currUser.longitude.toFixed(3)}`;
     } else {
         document.getElementById("profileLatitudeEdit").placeholder = `Latitude: N/A`;
         document.getElementById("profileLongitudeEdit").placeholder = `Longitude: N/A`;
