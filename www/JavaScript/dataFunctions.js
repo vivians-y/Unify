@@ -88,8 +88,8 @@ function filterTasks(taskList, userList, filterType, distances){ //Filter types 
             if (parseFloat(distances[i].split(" ")[0]) >= 0.99999999) {
                 continue;
             }
+            console.log(`curr dist: ${distances[i]}, dist.split: ${distances[i].split(" ")}, parsed: ${parseFloat(distances[i].split(" ")[0])}`);
         }
-
         else if (filterType == "Within5Miles") {
             if (distances[i].length <= 0){
                 continue;
