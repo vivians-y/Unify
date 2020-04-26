@@ -72,10 +72,6 @@ h2 {
     border-width: 1px;
 }
 
-.button p {
-    padding-left: 0;
-}
-
 .white-fill {
     background-color: white;
     color: rgb(35, 23, 85);
@@ -152,7 +148,7 @@ label {
 .task-item-container {
     position: absolute;
     bottom: 0;
-    height: 90vh;
+    height: 85vh;
     overflow-y: scroll;
     width: 100%;
     display: flex;
@@ -161,7 +157,7 @@ label {
     text-align: left;
 }
 
-.task-item-container .task-seperator:before{
+.task-item-container .task-seperator:before {
     content: " ";
     display: block;
     margin-top: 14px;
@@ -183,62 +179,43 @@ label {
     flex-direction: row;
 }
 
-.task-item * {
-    padding-top: 1.2vh;
-    height: 100%;
-    margin: 0.2vw;
-    padding-right: 1vw;
+
+.hand, .hand img {
+    background-image: url("Assets/hand.svg");
+    background-size: cover;
+    width: calc(15vh);
+    height: calc(15vh);
+    position: absolute;
+    margin-top: 2.5vh;
 }
 
-/*.task-item img{*/
-/*    width: 15px;*/
-/*    margin: 3.5vh;*/
-/*    float: left;*/
-/*    position: absolute;*/
-/*    flex-grow: 2;*/
-/*}*/
-
-.task-item img{
-    /*margin: 3.5vh;*/
-    width: 100%;
+.urgency, .urgency img {
+    background-image: url("Assets/priority_high-24px.svg");
+    background-size: cover;
+    width: calc(5vh);
+    height: calc(5vh);
+    position: absolute;
+    margin-top: 7.5vh;
 }
 
-.task-item .icon{
-    flex-grow: 2;
-    min-width: 3vw;
-}
-
-.task-item .nameUsername {
-    padding-top: 0;
-    flex-grow: 2;
+.horflex {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: calc(80vw - 15vh);
+    right: 10vw;
 }
 
-.task-item .nameUsername * {
-    padding-left: 2.2vw;
+.nameUsername, .desc, .urgency, .mailPhone {
+    position: relative;
 }
 
-.task-item .desc{
-    flex-grow: 3;
-    padding-top: 6.4vh;
-    padding-left: 0.8vw;
-}
-
-.task-item .urgency{
-    flex-grow: 1.2;
-}
-
-.task-item .mailPhone{
-    padding-top: 3.4vh;
-    flex-grow: 2;
-    display: flex;
-    flex-direction: column;
-}
-
-.task-item .mailPhone *{
-    text-align: center;
-    padding-left: 1.4vw;
+.mailPhone svg {
+    width: calc(30px);
+    position: relative;
 }
 
 .task-item-container::-webkit-scrollbar {
@@ -254,15 +231,6 @@ ul {
     margin: 0;
     list-style-type: none;
 }
-
-/*.task-item-container li:before {*/
-/*    content: " ";*/
-/*    display: block;*/
-/*    height: 10px;*/
-/*    bottom: 0;*/
-/*    !*background-color: magenta;*!*/
-/*    background: linear-gradient(to right, rgba(255, 255, 255, .7), rgba(255, 255, 255, 1), rgba(255, 255, 255, .7));*/
-/*}*/
 
 #create, #sign-in {
     display: none;
@@ -346,12 +314,11 @@ nav a:hover:after {
 
 h3, p {
     font-weight: 200;
-    padding-left: calc(20vh + 1vw + 10px);
 }
 
 h3 {
-    font-size: calc(30px + 1vw);
-    margin: 2px;
+    font-size: calc(24px + 1vw);
+    margin: 5px;
 }
 
 #stars {
