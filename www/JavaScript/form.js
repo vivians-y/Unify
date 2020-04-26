@@ -11,31 +11,41 @@ function submitcreate() {
     // input validation
     if (fn.length <= 0 || fn.includes(":") || fn.includes(";")) {
         let e = document.getElementById("fnameLabel");
-        e.innerText = "Invalid " + e.innerText;
+        if(e.innerText.substring(0, 8) != "Invalid"){
+            e.innerText = "Invalid " + e.innerText;
+        }
         e.classList.add("invalidField");
         valid = false;
     }
     if (ln.length <= 0 || ln.includes(":") || ln.includes(";")) {
         let e = document.getElementById("lnameLabel");
-        e.innerText = "Invalid " + e.innerText;
+        if(e.innerText.substring(0, 8) != "Invalid"){
+            e.innerText = "Invalid " + e.innerText;
+        }
         e.classList.add("invalidField");
         valid = false;
     }
     if (user.length <= 0 || user.includes(":") || user.includes(";")) {
         let e = document.getElementById("usernameLabel");
-        e.innerText = "Invalid " + e.innerText;
+        if(e.innerText.substring(0, 8) != "Invalid"){
+            e.innerText = "Invalid " + e.innerText;
+        }
         e.classList.add("invalidField");
         valid = false;
     }
     if (pass.length <= 0 || pass.includes(":") || pass.includes(";")) {
         let e = document.getElementById("passwordLabel");
-        e.innerText = "Invalid " + e.innerText;
+        if(e.innerText.substring(0, 8) != "Invalid"){
+            e.innerText = "Invalid " + e.innerText;
+        }
         e.classList.add("invalidField");
         valid = false;
     }
     if (email.length <= 0 || email.includes(":") || email.includes(";")) {
         let e = document.getElementById("emailLabel");
-        e.innerText = "Invalid " + e.innerText;
+        if(e.innerText.substring(0, 8) != "Invalid"){
+            e.innerText = "Invalid " + e.innerText;
+        }
         e.classList.add("invalidField");
         valid = false;
     }
@@ -96,13 +106,17 @@ function submittask() {
     let valid = true;
     if (taskName.length <= 0) {
         let e = document.getElementById("taskNameLabel");
-        e.innerText = "Invalid " + e.innerText;
+        if(e.innerText.substring(0, 8) != "Invalid"){
+            e.innerText = "Invalid " + e.innerText;
+        }
         e.classList.add("invalidField");
         valid = false;
     }
     if (taskDescription.length <= 0) {
         let e = document.getElementById("taskDescriptionLabel");
-        e.innerText = "Invalid " + e.innerText;
+        if(e.innerText.substring(0, 8) != "Invalid"){
+            e.innerText = "Invalid " + e.innerText;
+        }
         e.classList.add("invalidField");
         valid = false;
     }
@@ -198,11 +212,12 @@ function fadeout() {
 function createtask() {
     let x = document.getElementById("taskform");
     let y = document.getElementById("addtask");
-    if (x.style.opacity === "0") {
-        x.style.opacity = "1";
+    if (x.style.display == undefined || x.style.display == "none") {
+        x.style.display = "block";
         y.classList.add("rotate135");
-    } else {
-        x.style.opacity = "0";
-        y.classList.remove("rotate135")
+    }
+    else {
+        x.style.display = "none";
+        y.classList.remove("rotate135");
     }
 }

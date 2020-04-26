@@ -161,20 +161,84 @@ label {
     text-align: left;
 }
 
+.task-item-container .task-seperator:before{
+    content: " ";
+    display: block;
+    margin-top: 14px;
+    margin-bottom: 8px;
+    height: 0.2vh;
+    bottom: 0;
+    z-index: 10;
+    border-radius: 3px;
+    width: 92vw;
+    /*background-color: magenta;*/
+    background: linear-gradient(to right, rgba(255, 255, 255, .7), rgba(255, 255, 255, 1), rgba(255, 255, 255, .7));
+}
+
 .task-item {
     min-height: 20vh;
     width: 90%;
+    max-width: 90%;
+    display: flex;
+    flex-direction: row;
 }
 
-.task-item img {
-    width: calc(13vh);
-    margin: 3.5vh;
-    float: left;
-    position: absolute;
+.task-item * {
+    padding-top: 1.2vh;
+    height: 100%;
+    margin: 0.2vw;
+    padding-right: 1vw;
 }
 
-.task-item .icon {
+/*.task-item img{*/
+/*    width: 15px;*/
+/*    margin: 3.5vh;*/
+/*    float: left;*/
+/*    position: absolute;*/
+/*    flex-grow: 2;*/
+/*}*/
 
+.task-item img{
+    /*margin: 3.5vh;*/
+    width: 100%;
+}
+
+.task-item .icon{
+    flex-grow: 2;
+    min-width: 3vw;
+}
+
+.task-item .nameUsername {
+    padding-top: 0;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-item .nameUsername * {
+    padding-left: 2.2vw;
+}
+
+.task-item .desc{
+    flex-grow: 3;
+    padding-top: 6.4vh;
+    padding-left: 0.8vw;
+}
+
+.task-item .urgency{
+    flex-grow: 1.2;
+}
+
+.task-item .mailPhone{
+    padding-top: 3.4vh;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-item .mailPhone *{
+    text-align: center;
+    padding-left: 1.4vw;
 }
 
 .task-item-container::-webkit-scrollbar {
@@ -191,13 +255,14 @@ ul {
     list-style-type: none;
 }
 
-.task-item-container li:before {
-    content: " ";
-    display: block;
-    height: .5px;
-    bottom: 0;
-    background: linear-gradient(to right, rgba(255, 255, 255, .7), rgba(255, 255, 255, 1), rgba(255, 255, 255, .7));
-}
+/*.task-item-container li:before {*/
+/*    content: " ";*/
+/*    display: block;*/
+/*    height: 10px;*/
+/*    bottom: 0;*/
+/*    !*background-color: magenta;*!*/
+/*    background: linear-gradient(to right, rgba(255, 255, 255, .7), rgba(255, 255, 255, 1), rgba(255, 255, 255, .7));*/
+/*}*/
 
 #create, #sign-in {
     display: none;
@@ -322,10 +387,15 @@ h3 {
     }
 }
 
+.invalidField {
+    color: #912c35;
+}
+
 #taskform {
-    opacity: 0;
+    opacity: 1;
     padding: 40px;
     background-color: #60569b;
+    display: none;
     z-index: 2;
     position: fixed;
     width: calc(80vw - 20px);

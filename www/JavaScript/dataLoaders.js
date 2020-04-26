@@ -3,6 +3,7 @@ const taskDatabaseName = "tasks";
 
 // pushUser(new User("Troy", "Lee", "eelyort", "password", "~@gmail.com", "~~~"));
 // pushTask(new Task("Sample 1", "eelyort", "Fetch", "Please go get me food.", 0, 120, 50));
+// pushTask(new Task("Groceries Help", "eelyort", "Food", "I am 80 years old and have a bad back. Also, since I have asthma I am too scared to go out and buy groceries. Can you please go purchase cold cuts, bananas, and sandwich bread for me. I will reimburse you for all spending.", 1), function () {});
 
 // returns an array of all users stored
 function getAllUsers(callback){
