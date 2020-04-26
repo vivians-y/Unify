@@ -39,19 +39,24 @@
 
 <img id="profile-pic" src="Assets/hand.svg">
 <h2>Profile</h2>
-<h3 class="dispinfo" id="profileUsername">Username</h3>
-<input class="edit" id="profileUsernameEdit">
-<h3 class="dispinfo" id="profileKarma">Karma</h3>
-<h3 class="dispinfo" id="profileName">Name</h3>
-<input class="edit" id="profileNameEdit">
-<h3 class="dispinfo" id="profileEmail">Email</h3>
-<input class="edit" id="profileEmailEdit">
-<h3 class="dispinfo" id="profilePhone">Phone Number</h3>
-<input class="edit" id="profilePhoneEdit">
-<h3 class="dispinfo" id="profileLocation">(Latitude, longitude)</h3>
-<input class="edit" id="profileLocationEdit">
-<div class="button white-fill dispinfo" onclick="showStuff()"><p>Edit Profile</p></div>
-<div class="button white-fill edit" onclick="showStuff()"><p>Submit Changes</p></div>
+<div id="dispinfo">
+    <h3 id="profileUsername">Username</h3>
+    <h3 id="profileKarma">Karma</h3>
+    <h3 id="profileName">Name</h3>
+    <h3 id="profileEmail">Email</h3>
+    <h3 id="profilePhone">Phone Number</h3>
+    <h3 id="profileLocation">(Latitude, longitude)</h3>
+    <div class="button white-fill" onclick="showStuff()"><p>Edit Profile</p></div>
+</div>
+<div id="edit">
+    <input id="profileUsernameEdit">
+    <input id="profileFirstNameEdit">
+    <input id="profileLastNameEdit">
+    <input id="profileEmailEdit">
+    <input id="profilePhoneEdit">
+    <input id="profileLocationEdit">
+    <div class="button white-fill" onclick="showStuff()"><p>Submit Changes</p></div>
+</div>
 <!--DATABASE STUFF HERE: PLEASE PUT ALL SCRIPT TAGS BENEATH THIS PLS-->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
