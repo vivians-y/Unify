@@ -117,7 +117,7 @@ function calcDist(originArr, destinationArr, callbackFunc){
             travelMode: 'DRIVING',
             // transitOptions: TransitOptions,
             // drivingOptions: DrivingOptions,
-            // unitSystem: UnitSystem,
+            unitSystem: google.maps.UnitSystem.IMPERIAL,
             avoidHighways: false,
             avoidTolls: false
         }, callbackFunc);
