@@ -93,10 +93,10 @@ function sortTasks(taskList, sortType) {
 			}
 		}
 	}
-	refreshTasksListUI(1);
+	refreshTaskListUI(1);
 }
 
-function refreshTasksListUI(pageNum){	//Changes the UI of the task list UI depending on page number
+function refreshTaskListUI(pageNum){	//Changes the UI of the task list UI depending on page number
 	// update task 0
 	document.getElementById("task0").innerText = `Username: ${currUser.username}`;
 	// update task 1
