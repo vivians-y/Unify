@@ -195,6 +195,29 @@ label {
     position: absolute;
 }
 
+.volunteering {
+    background-image: url("Assets/personWalking.svg");
+}
+
+.foodWater {
+    background-image: url("Assets/shoppingBag.svg");
+}
+
+.lending {
+    background-image: url("Assets/clock.svg");
+}
+
+.transport {
+    background-image: url("Assets/car.svg");
+}
+
+.urgency {
+    background-size: cover;
+    width: calc(5vh);
+    height: calc(5vh);
+    position: absolute;
+}
+
 .alert0 {
     background-image: url("Assets/no alert.svg");
 }

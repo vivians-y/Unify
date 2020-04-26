@@ -5,6 +5,10 @@ let currentTasks = [];
 
 let allTasks = [];
 
+let allDistances = [];
+
+let currIdx = [];
+
 const maxItemsOnPage = 15;
 
 resetTasks();
@@ -15,6 +19,8 @@ function resetTasks(){
     currentTasks = [];
 
     allTasks = [];
+
+    currIdx = [];
 
     loadAllTasks();
 }
@@ -33,12 +39,50 @@ function loadAllTasks(){
 
 function loadNextTen(users) {
     getCurrPos(function (pos) {
-        // console.log("loadNextTen callback");
-        loadNextTen2(pos, users);
+        // update allDistances array
+        for (let i = 0; i < allTasks.length; i++) {
+            allDistances.push("");
+
+            if(pos !== -1) {
+                let tLat = allTasks[i].taskLatitude;
+                let tLong = allTasks[i].taskLongitude;
+                if(tLat != null && tLat != undefined && tLong != null && tLong != undefined && !isNaN(tLat) && !isNaN(tLong)) {
+                    console.log(`i: ${i}, tLat: ${tLat}, tLong: ${tLong}, pos.lat: ${pos.lat}, pos.lng: ${pos.lng}`);
+                    if(typeof tLat != "number"){
+                        tLat = parseFloat(tLat);
+                    }
+                    if(typeof tLong != "number"){
+                        tLong = parseFloat(tLong);
+                    }
+                    try {
+                        calcDistWithLatLon(pos.lat, pos.lng, tLat, tLong, function (distanceOut) {
+                            allDistances[i] = distanceOut;
+                            if (i == allTasks.length - 1) {
+                                loadNextTen2(pos, users);
+                            }
+                        });
+                    }
+                    catch (e) {
+                        
+                    }
+                }
+                else{
+                    if(i == allTasks.length-1){
+                        loadNextTen2(pos, users);
+                    }
+                }
+            }
+            else{
+                if(i == allTasks.length-1){
+                    loadNextTen2(pos, users);
+                }
+            }
+        }
     });
 }
 function loadNextTen2(currPos, users) {
-    // console.log("Top of loadNextTen2");
+    console.log("Top of loadNextTen2");
+    console.log("distances: " + allDistances.toString());
 
     // filters
     let filterList = [];
@@ -67,7 +111,7 @@ function loadNextTen2(currPos, users) {
 
     // filter
     for (let i = 0; i < filterList.length; i++) {
-        filteredTasks = filterTasks(filteredTasks, users, filterList[i], currPos);
+        filteredTasks = filterTasks(filteredTasks, users, filterList[i], allDistances);
     }
 
     // // debug log TODO
@@ -88,6 +132,7 @@ function loadNextTen2(currPos, users) {
         document.getElementById("task-item-container").getElementsByClassName("task-item")[i].style.display = "";
         document.getElementById("task-item-container").getElementsByClassName("task-separator")[i].style.display = "";
         currentTasks[i] = filteredTasks[idx];
+        currIdx[i] = idx;
 
         // console.log("blah blah, currentTasks:");
         // for (let j = 0; j < currentTasks.length; j++) {
@@ -100,24 +145,54 @@ function loadNextTen2(currPos, users) {
         // get horizontal flex wrapper
         let e = document.getElementById("task-item-container").getElementsByClassName("task-item")[i].getElementsByClassName("horflex")[0];
 
+        // icon name
+        let a = document.getElementById("task-item-container").getElementsByClassName("task-item")[i].getElementsByClassName("hand")[0];
+        a.classList.remove("volunteering");
+        a.classList.remove("foodWater");
+        a.classList.remove("lending");
+        a.classList.remove("transport");
+        if(currentTasks[i].taskType == "Volunteering"){
+            a.classList.add("volunteering");
+        }
+        if(currentTasks[i].taskType == "Food&Water"){
+            a.classList.add("foodWater");
+        }
+        if(currentTasks[i].taskType == "Lending"){
+            a.classList.add("lending");
+        }
+        if(currentTasks[i].taskType == "Transport"){
+            a.classList.add("transport");
+        }
+
         // name username
         let nameUser = e.getElementsByClassName("nameUsername")[0];
         // task name
         nameUser.getElementsByTagName("h3")[0].innerText = currentTasks[i].taskName;
         // distance
-        if(currPos !== -1) {
-            let tLat = currentTasks[i].taskLatitude;
-            let tLong = currentTasks[i].taskLongitude;
-            if(!isNaN(tLat) && !isNaN(tLong)) {
-                tLat = parseFloat()
-                calcDistWithLatLon(currPos.lat, currPos.lng, currentTasks[i].taskLatitude, currentTasks[i].taskLongitude, function (distanceOut) {
-                    nameUser.getElementsByTagName("p")[0].innerText = `${distanceOut} miles away`;
-                });
-            }
+        if(allDistances[currIdx[i]].length > 0){
+            nameUser.getElementsByTagName("p")[0].innerText = `${allDistances[currIdx[i]]} away`;
         }
         else{
             nameUser.getElementsByTagName("p")[0].innerText = `Unknown Location`;
         }
+        // if(currPos !== -1) {
+        //     let tLat = currentTasks[i].taskLatitude;
+        //     let tLong = currentTasks[i].taskLongitude;
+        //     if(tLat != null && tLat != undefined && tLong != null && tLong != undefined && !isNaN(tLat) && !isNaN(tLong)) {
+        //         if(typeof tLat != "number"){
+        //             tLat = parseFloat(tLat);
+        //         }
+        //         if(typeof tLong != "number"){
+        //             tLong = parseFloat(tLong);
+        //         }
+        //         calcDistWithLatLon(currPos.lat, currPos.lng, tLat, tLong, function (distanceOut) {
+        //             nameUser.getElementsByTagName("p")[0].innerText = `${distanceOut} away`;
+        //         });
+        //     }
+        // }
+        // else{
+        //     nameUser.getElementsByTagName("p")[0].innerText = `Unknown Location`;
+        // }
 
         // description
         e.getElementsByClassName("desc")[0].innerText = currentTasks[i].taskDescription;

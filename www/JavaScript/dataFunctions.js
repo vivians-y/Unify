@@ -5,8 +5,8 @@ function findUserByUsername(userList, username){ //Returns position in userList 
 }
 
 
-function filterTasks(taskList, userList, filterType, position){ //Filter types are "VolunteeringOnly", "Food&WaterOnly", "LendingOnly", "UrgencyAtLeast2", "UrgencyAtLeast3", "UrgencyAtLeast4", "KarmaAtLeast100", "Within1Mile" ,"Within5Miles", "Within10Miles", and "Within25Miles"
-	console.log(`Top of filterTasks: taskList: ${taskList.toString()}\nuserList: ${userList.toString()}\nfilterType: ${filterType}, position: ${position.toString()}`);
+function filterTasks(taskList, userList, filterType, distances){ //Filter types are "VolunteeringOnly", "Food&WaterOnly", "LendingOnly", "UrgencyAtLeast2", "UrgencyAtLeast3", "UrgencyAtLeast4", "KarmaAtLeast100", "Within1Mile" ,"Within5Miles", "Within10Miles", and "Within25Miles"
+	// console.log(`Top of filterTasks: taskList: ${taskList.toString()}\nuserList: ${userList.toString()}\nfilterType: ${filterType}, position: ${position.toString()}`);
 
 	let newArr = [];
 
@@ -23,8 +23,13 @@ function filterTasks(taskList, userList, filterType, position){ //Filter types a
             }
         }
 
-		else if (filterType == "LendingOnly") {
+        else if (filterType == "LendingOnly") {
             if (taskList[i].taskType != "Lending") {
+                continue;
+            }
+        }
+        else if (filterType == "TransportOnly") {
+            if (taskList[i].taskType != "Transport") {
                 continue;
             }
         }
@@ -76,31 +81,39 @@ function filterTasks(taskList, userList, filterType, position){ //Filter types a
                 continue;
             }
         }
-
-        // TODO: make me work
-        if(position != null && position != -1 && false) {
-            if (filterType == "Within1Mile") {
-                if (getDistance(position.lat, position.lng, taskList[i].taskLatitude, taskList[i].taskLongitude) > 1) {
-                    continue;
-                }
+        else if (filterType == "Within1Mile") {
+            if (distances[i].length <= 0){
+                continue;
             }
-
-            else if (filterType == "Within5Miles") {
-                if (getDistance(position.lat, position.lng, taskList[i].taskLatitude, taskList[i].taskLongitude) > 5) {
-                    continue;
-                }
+            if (parseFloat(distances[i].split(" ")[0]) >= 0.99999999) {
+                continue;
             }
+        }
 
-            else if (filterType == "Within10Miles") {
-                if (getDistance(position.lat, position.lng, taskList[i].taskLatitude, taskList[i].taskLongitude) > 10) {
-                    continue;
-                }
+        else if (filterType == "Within5Miles") {
+            if (distances[i].length <= 0){
+                continue;
             }
+            if (parseFloat(distances[i].split(" ")[0]) >= 4.99999999) {
+                continue;
+            }
+        }
 
-            else if (filterType == "Within25Miles") {
-                if (getDistance(position.lat, position.lng, taskList[i].taskLatitude, taskList[i].taskLongitude) > 25) {
-                    continue;
-                }
+        else if (filterType == "Within10Miles") {
+            if (distances[i].length <= 0){
+                continue;
+            }
+            if (parseFloat(distances[i].split(" ")[0]) >= 9.99999999) {
+                continue;
+            }
+        }
+
+        else if (filterType == "Within25Miles") {
+            if (distances[i].length <= 0){
+                continue;
+            }
+            if (parseFloat(distances[i].split(" ")[0]) >= 24.99999999) {
+                continue;
             }
         }
         newArr.push(taskList[i]);

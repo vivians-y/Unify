@@ -124,24 +124,29 @@ function calcDist(originArr, destinationArr, callbackFunc){
     //let gay = distancesArr
 }
 function callback(response, status) {
-    if (status == 'OK') {
-        var origins = response.originAddresses;
-        var destinations = response.destinationAddresses;
-        let distancesArr = [];
-        for (var i = 0; i < origins.length; i++) {
-            var results = response.rows[i].elements;
-            for (var j = 0; j < results.length; j++) {
-                var element = results[j];
-                var distance = element.distance.text;
-                var duration = element.duration.text;
-                var from = origins[i];
-                var to = destinations[j];
-                let currDist = [distance,duration,from,to];
-                distancesArr.push(currDist);
-                //console.log(distance);
+    try {
+        if (status == 'OK') {
+            var origins = response.originAddresses;
+            var destinations = response.destinationAddresses;
+            let distancesArr = [];
+            for (var i = 0; i < origins.length; i++) {
+                var results = response.rows[i].elements;
+                for (var j = 0; j < results.length; j++) {
+                    var element = results[j];
+                    var distance = element.distance.text;
+                    var duration = element.duration.text;
+                    var from = origins[i];
+                    var to = destinations[j];
+                    let currDist = [distance, duration, from, to];
+                    distancesArr.push(currDist);
+                    //console.log(distance);
+                }
             }
+            // printDistances(distancesArr);
+            return distancesArr;
         }
-        // printDistances(distancesArr);
-        return distancesArr;
+    }
+    catch (e) {
+        return [[""]];
     }
 }
