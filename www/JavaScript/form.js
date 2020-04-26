@@ -230,3 +230,7 @@ function searchopen() {
         x.style.opacity=".8";
     }
 }
+function testTextBoxes(){
+    document.getElementById("task").placeholder = "Vivian Gay";
+
+}

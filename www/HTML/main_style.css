@@ -495,3 +495,7 @@ nav a {
     top: 0;
 }
 
+.edit{
+    display: none;
+}
+
