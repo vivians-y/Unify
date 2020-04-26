@@ -9,6 +9,8 @@ function filterTasks(taskList, userList, filterType){ //Filter types are "Volunt
 	
 	//getAllTasks(); //Refreshes tasks
 	
+	let currUser = JSON.parse(sessionStorage.getItem("currentUser"));
+
 	for(i=0; i < taskList.length; i++){ //Loops through task list and removes tasks that don't fit criteria
 		if (filterType == "VolunteeringOnly")
 			if(taskList[i].taskType != "Volunteering")
@@ -39,19 +41,19 @@ function filterTasks(taskList, userList, filterType){ //Filter types are "Volunt
 				taskList.splice(i);
 
 		else if (filterType == "Within1Mile")
-			if(getDistance(localLongitude,localLatitude,taskList[i].taskLongitude,taskList[i].taskLatitude) > 1)
+			if(getDistance(currUser.latitude,currUser.longitude,taskList[i].taskLatitude,taskList[i].taskLongitude) > 1)
 				taskList.splice(i);
 
 		else if (filterType == "Within5Miles")
-			if(getDistance(localLongitude,localLatitude,taskList[i].taskLongitude,taskList[i].taskLatitude) > 5)
+			if(getDistance(currUser.latitude,currUser.longitude,taskList[i].taskLatitude,taskList[i].taskLongitude) > 5)
 				taskList.splice(i);
 
 		else if (filterType == "Within10Miles")
-			if(getDistance(localLongitude,localLatitude,taskList[i].taskLongitude,taskList[i].taskLatitude) > 10)
+			if(getDistance(currUser.latitude,currUser.longitude,taskList[i].taskLatitude,taskList[i].taskLongitude) > 10)
 				taskList.splice(i);
 		
 		else if (filterType == "Within25Miles")
-			if(getDistance(localLongitude,localLatitude,taskList[i].taskLongitude,taskList[i].taskLatitude) > 25)
+			if(getDistance(currUser.latitude,currUser.longitude,taskList[i].taskLatitude,taskList[i].taskLongitude) > 25)
 				taskList.splice(i);
 
 		else
@@ -82,8 +84,8 @@ function sortTasks(taskList, sortType) {
 				comparisonValue1 = taskList[i-1].taskUrgency;
 			}
 			else if(sortType == "Closest"){
-				comparisonValue2 = getDistance(currUser.longitude,currUser.latitude,taskList[i].taskLongitude,taskList[i].taskLatitude);
-				comparisonValue1 = getDistance(currUser.longitude,currUser.latitude,taskList[i-1].taskLongitude,taskList[i-1].taskLatitude);
+				comparisonValue2 = getDistance(currUser.latitude,currUser.longitude,taskList[i].taskLatitude,taskList[i].taskLongitude);
+				comparisonValue1 = getDistance(currUser.latitude,currUser.longitude,taskList[i-1].taskLatitude,taskList[i-1].taskLongitude);
 			}
 			if((sortType == "Urgency" && comparisonValue2 > comparisonValue1) || ((sortType == "Recent" || sortType == "Closest") && comparisonValue2 < comparisonValue1)){
 				let temp = taskList[i];
