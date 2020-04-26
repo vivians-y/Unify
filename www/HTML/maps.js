@@ -15,9 +15,9 @@ function initMap() {
     let dest1 = new google.maps.LatLng(30.6280,-96.3344);
     let originArr = [org1];
     let destinationArr = [dest1];
-    //calcDist(originArr, destinationArr);
+    let distanceCalculated = calcDistWithLatLon(29.7604, -95.3698,30.6280,-96.3344);
     infoWindow = new google.maps.InfoWindow;
-
+    console.log("the distance calculated is:"+distanceCalculated);
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -78,9 +78,7 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 function printDistances(distances){
     console.log(distances.length);
     for(let i = 0; i<distances.length;i++){
-        for(let j = 0; j<distances[i].length; j++) {
-            console.log("HI"+distances[i][j]);
-        }
+        giveDist(distances[i][0])
     }
 
 }
@@ -99,7 +97,15 @@ function showDist(latitude1,longitude1,latitude2,longitude2,directionsServiceT,d
         }
     });
 }
-
+function giveDist(distance){
+    return distance;
+}
+function calcDistWithLatLon(lat1,long1,lat2,long2){
+    let origin = [new google.maps.LatLng(lat1,long1)];
+    let dest = [new google.maps.LatLng(lat2,long2)];
+    let distance = giveDist(calcDist(origin,dest));
+    return distance;
+}
 function calcDist(originArr, destinationArr){
     console.log(originArr);
     var service = new google.maps.DistanceMatrixService();
@@ -131,7 +137,7 @@ function callback(response, status) {
                 var to = destinations[j];
                 let currDist = [distance,duration,from,to];
                 distancesArr.push(currDist);
-                console.log(distance);
+                //console.log(distance);
             }
         }
         printDistances(distancesArr);
