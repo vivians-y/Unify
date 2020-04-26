@@ -65,26 +65,30 @@ function initMap() {
     //directionsRenderer.setMap(map);
 
 }
-setTimeout(makeAllMarkers, 2000);
+
 
 function makeAllMarkers(){
+    getCurrPos(callBackMegaCoolBoy);
+
+}
+function callBackMegaCoolBoy(valout){
     getAllTasks(function (tasksOut) {
         // console.log("loadAllTasks callback");
-        let currUser = JSON.parse(sessionStorage.getItem("currentUser"));
-        let startLat=0;
-        let startLon=0;
-        if (currUser.latitude != null && currUser.longitude != null && currUser.latitude != -1 && currUser.longitude != -1) {
-            startLat = currUser.latitude;
-            startLon = currUser.longitude;
-        }
         let mapOptions = {
-            zoom: 4,
-            center: new google.maps.LatLng(startLat,startLon)
+            zoom: 10,
+            center: new google.maps.LatLng(valout.lat,valout.lng)
         };
         let map = new google.maps.Map(document.getElementById("map"), mapOptions);
         let tasks = tasksOut;
+        let testMarker = new google.maps.Marker({
+            position: {lat:valout.lat,lng :valout.lng},
+            title:"Gay"
+        });
+        testMarker.setMap(map);
         for(let i = 0; i<tasks.length;i++){
             if(tasks[i].taskLatitude==-1||tasks[i].taskLatitude==null||tasks[i].taskLongitude==0||tasks[i].taskLatitude==null){
+            }
+            else{
                 let currLatLng = new google.maps.LatLng(tasks[i].taskLatitude,tasks[i].taskLongitude);
                 let currMarker = new google.maps.Marker({
                     position: currLatLng,
@@ -94,6 +98,7 @@ function makeAllMarkers(){
             }
         }
     });
+
 }
 function getCurrPos(callback){
     // Try HTML5 geolocation
