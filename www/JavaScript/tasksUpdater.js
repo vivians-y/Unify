@@ -5,6 +5,8 @@ let currentTasks = [];
 
 let allTasks = [];
 
+loadAllTasks();
+
 function loadAllTasks(){
     getAllTasks(function (tasksOut) {
         allTasks = tasksOut;
@@ -19,7 +21,7 @@ function loadNextTen() {
 
         // update text
         let e = document.getElementById(`task${i}`);
-        // TODO
+
 
         idx++;
     }
