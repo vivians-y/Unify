@@ -273,11 +273,19 @@ label {
 
 #task-filters {
     width: 100%;
-    height: 50px;
-    background-color: magenta;
+    /*height: 50px;*/
+    /*background-color: magenta;*/
+    /*background: transparent;*/
     position: fixed;
+    /*background-color: #60569b;*/
+    /*display: block;*/
     top: 95px;
     left: 0;
+    padding: 6px 8vw;
+}
+#task-filters label{
+    padding-top: 0;
+    padding-right: 0.4vw;
 }
 
 .search-icon, #search_open {

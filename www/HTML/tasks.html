@@ -49,14 +49,57 @@
             <input id="search" name="search" type="text"><br>
         </div>
     </div>
+
     <!--filters-->
     <div id="task-filters" class="horflex">
-        <label for="filterType">Task Type:</label>
-        <select id="filterType">
-            <option value="VolunteeringOnly">Volunteering</option>
-            <option value="Food&WaterOnly">Food and Water</option>
-            <option value="Lending">Lending</option>
-        </select>
+        <div>
+            <label for="filterType">Task Type:</label>
+            <select id="filterType">
+                <option value="none">None</option>
+                <option value="VolunteeringOnly">Volunteer</option>
+                <option value="Food&WaterOnly">Food/Water</option>
+                <option value="Lending">Lending</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="filterUrgency">Urgency Above:</label>
+            <select id="filterUrgency">
+                <option value="none">None</option>
+                <option value="UrgencyAtLeast2">1</option>
+                <option value="UrgencyAtLeast3">2</option>
+                <option value="UrgencyAtLeast4">3</option>
+                <option value="UrgencyAtLeast5">4</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="filterKarma">Karma Above:</label>
+            <select id="filterKarma">
+                <option value="none">None</option>
+                <option value="KarmaAtLeast5">5</option>
+                <option value="KarmaAtLeast10">10</option>
+                <option value="KarmaAtLeast50">50</option>
+                <option value="KarmaAtLeast100">100</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="filterDistance">Within:</label>
+            <select id="filterDistance">
+                <option value="none">None</option>
+                <option value="Within1Mile">1 mi</option>
+                <option value="Within5Miles">5 mi</option>
+                <option value="Within10Miles">10 mi</option>
+                <option value="Within25Miles">25 mi</option>
+            </select>
+        </div>
+
+
+
+        <button onclick="resetTasks()">
+            Apply Filters
+        </button>
     </div>
 </header>
 
@@ -710,6 +753,8 @@
 <script src="../JavaScript/task.js"></script>
 
 <script src="../JavaScript/dataLoaders.js"></script>
+
+<script src="../JavaScript/dataFunctions.js"></script>
 
 <script src="../JavaScript/tasksUpdater.js"></script>
 

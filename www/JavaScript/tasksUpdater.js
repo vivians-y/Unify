@@ -27,24 +27,63 @@ function loadAllTasks(){
         // for (let i = 0; i < allTasks.length; i++) {
         //     console.log(` ${i}: ${JSON.stringify(allTasks[i])}`);
         // }
-        loadNextTen();
+
+        // load users
+        getAllUsers(function (usersOut) {
+            loadNextTen(usersOut);
+        });
     });
 }
 
-function loadNextTen() {
+function loadNextTen(users) {
     getCurrPos(function (pos) {
         // console.log("loadNextTen callback");
-        loadNextTen2(pos);
+        loadNextTen2(pos, users);
     });
 }
-function loadNextTen2(currPos) {
+function loadNextTen2(currPos, users) {
     // console.log("Top of loadNextTen2");
 
-    // TODO: filters
+    // filters
+    let filterList = [];
+    let divs = document.getElementById("task-filters").getElementsByTagName("div");
+    console.log("divs.length: " + divs.length);
+    for (let i = 0; i < divs.length-1; i++) {
+        let option = divs[i].getElementsByTagName("select")[0].value;
+        console.log(`${i}: select element: ${divs[i].getElementsByTagName("select")[0]}, option: ${option}`);
+        if(option != null && option != undefined && option != "none"){
+            filterList.push(option);
+        }
+    }
+
+    // // debug log TODO
+    // let txt = "FilterList: [";
+    // for (let i = 0; i < filterList.length; i++) {
+    //     txt += `${filterList[i]}, `;
+    // }
+    // console.log(txt + "]");
+
+    // copy all tasks into filtered tasks
+    let filteredTasks = [];
+    for (let i = 0; i < allTasks.length; i++) {
+        filteredTasks.push(allTasks[i]);
+    }
+
+    // filter
+    for (let i = 0; i < filterList.length; i++) {
+        filteredTasks = filterTasks(filteredTasks, users, filterList[i], currPos);
+    }
+
+    // // debug log TODO
+    // console.log(`filtered.len: ${filteredTasks.length}, all.len: ${allTasks.length}`);
+
+    // sort
+    filteredTasks = sortTasks();
+
     for (let i = 0; i < maxItemsOnPage; i++) {
         // console.log(`top of for loop: i: ${i}, idx: ${idx}`);
 
-        if(idx >= allTasks.length){
+        if(idx >= filteredTasks.length){
             // console.log("breaking");
             document.getElementById("task-item-container").getElementsByClassName("task-item")[i].style.display = "none";
             document.getElementById("task-item-container").getElementsByClassName("task-separator")[i].style.display = "none";
@@ -52,8 +91,7 @@ function loadNextTen2(currPos) {
         }
         document.getElementById("task-item-container").getElementsByClassName("task-item")[i].style.display = "";
         document.getElementById("task-item-container").getElementsByClassName("task-separator")[i].style.display = "";
-        // TODO: filter
-        currentTasks[i] = allTasks[idx];
+        currentTasks[i] = filteredTasks[idx];
 
         // console.log("blah blah, currentTasks:");
         // for (let j = 0; j < currentTasks.length; j++) {

@@ -80,7 +80,6 @@ function printDistances(distances){
     for(let i = 0; i<distances.length;i++){
         giveDist(distances[i][0])
     }
-
 }
 function showDist(latitude1,longitude1,latitude2,longitude2,directionsServiceT,directionsRendererT){
 
@@ -97,16 +96,18 @@ function showDist(latitude1,longitude1,latitude2,longitude2,directionsServiceT,d
         }
     });
 }
-function giveDist(distance){
-    return distance;
+function giveDist(distanceArr){
+    return distanceArr[0][0];
 }
-function calcDistWithLatLon(lat1,long1,lat2,long2){
+function calcDistWithLatLon(lat1,long1,lat2,long2, callbackFunc){
     let origin = [new google.maps.LatLng(lat1,long1)];
     let dest = [new google.maps.LatLng(lat2,long2)];
-    let distance = giveDist(calcDist(origin,dest));
-    return distance;
+    calcDist(origin,dest, function (response, status) {
+        let distArr = callback(response, status);
+        callbackFunc(giveDist(distArr));
+    });
 }
-function calcDist(originArr, destinationArr){
+function calcDist(originArr, destinationArr, callbackFunc){
     console.log(originArr);
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix(
@@ -119,7 +120,7 @@ function calcDist(originArr, destinationArr){
             // unitSystem: UnitSystem,
             avoidHighways: false,
             avoidTolls: false
-        }, callback);
+        }, callbackFunc);
     //let gay = distancesArr
 }
 function callback(response, status) {
@@ -140,7 +141,7 @@ function callback(response, status) {
                 //console.log(distance);
             }
         }
-        printDistances(distancesArr);
+        // printDistances(distancesArr);
+        return distancesArr;
     }
-
 }
