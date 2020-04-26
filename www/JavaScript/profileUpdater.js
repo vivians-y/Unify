@@ -54,27 +54,45 @@ function giveTextBoxesShit() {
     }
 // location
     if (currUser.latitude != null && currUser.longitude != null && currUser.latitude != -1 && currUser.longitude != -1) {
-        document.getElementById("profileLocationEdit").placeholder = `Location: (${currUser.latitude}, ${currUser.longitude})`;
+        document.getElementById("profileLatitudeEdit").placeholder = `Location: ${currUser.latitude}`;
+        document.getElementById("profileLongitudeEdit").placeholder = `Location: ${currUser.longitude})`;
     } else {
-        document.getElementById("profileLocationEdit").placeholder = `Location: (N/A, N/A)`;
+        document.getElementById("profileLatitudeEdit").placeholder = `Location: N/A`;
+        document.getElementById("profileLongitudeEdit").placeholder = `Location: N/A`;
     }
 }
 
 function editFields() {
-    let newUsername = document.getElementById("profileUsernameEdit");
-    let newFirstName = document.getElementById("profileFirstNameEdit");
-    let newLastName = document.getElementById("profileLastNameEdit");
-    let newEmail = document.getElementById("profileEmailEdit");
-    let newPhone = document.getElementById("profilePhoneEdit");
-    let newLocation = document.getElementById("profileLocationEdit");
+    let newUsername = document.getElementById("profileUsernameEdit").value;
+    let newFirstName = document.getElementById("profileFirstNameEdit").value;
+    let newLastName = document.getElementById("profileLastNameEdit").value;
+    let newEmail = document.getElementById("profileEmailEdit").value;
+    let newPhone = document.getElementById("profilePhoneEdit").value;
+    let newLatitude = document.getElementById("profileLatitudeEdit").value;
+    let newLongitude = document.getElementById("profileLongitudeEdit").value;
     let user = JSON.parse(sessionStorage.getItem("currentUser"));
-    user.username = newUsername;
-    user.firstName = newFirstName;
-    user.lastName = newLastName;
-    user.email = newEmail;
-    user.phoneNumber = newPhone;
-    user.latitude = parseFloat(newLocation.split(",")[0]);
-    user.longitude = parseFloat(newLocation.split(",")[1]);
+    if(newUsername != null){
+        user.username = newUsername;
+    }
+    if(newFirstName != null){
+        user.firstName = newFirstName;
+    }
+    if(newLastName != null){
+        user.lastName = newLastName;
+    }
+    if(newEmail != null){
+        user.email = newEmail;
+    }
+    if(newPhone != null){
+        user.phoneNumber = newPhone;
+    }
+    if(newLatitude != null){
+        user.latitude = parseFloat(newLatitude);
+    }
+    if(newLongitude != null){
+        user.longitude = parseFloat(newLongitude);
+    }
+
     updateUser(user, function () {
         sessionStorage.setItem("currentUser", JSON.stringify(user));
         // anything you want to do after the save here
