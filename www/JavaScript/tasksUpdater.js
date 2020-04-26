@@ -47,7 +47,7 @@ function loadNextTen(users) {
                 let tLat = allTasks[i].taskLatitude;
                 let tLong = allTasks[i].taskLongitude;
                 if(tLat != null && tLat != undefined && tLong != null && tLong != undefined && !isNaN(tLat) && !isNaN(tLong)) {
-                    console.log(`i: ${i}, tLat: ${tLat}, tLong: ${tLong}, pos.lat: ${pos.lat}, pos.lng: ${pos.lng}`);
+                    // console.log(`i: ${i}, tLat: ${tLat}, tLong: ${tLong}, pos.lat: ${pos.lat}, pos.lng: ${pos.lng}`);
                     if(typeof tLat != "number"){
                         tLat = parseFloat(tLat);
                     }
@@ -82,27 +82,27 @@ function loadNextTen(users) {
 }
 
 function loadNextTen2(currPos, users) {
-    console.log("Top of loadNextTen2");
+    // console.log("Top of loadNextTen2");
     console.log("distances: " + allDistances.toString());
 
     // filters
     let filterList = [];
     let divs = document.getElementById("task-filters").getElementsByTagName("div");
-    console.log("divs.length: " + divs.length);
+    // console.log("divs.length: " + divs.length);
     for (let i = 0; i < divs.length-1; i++) {
         let option = divs[i].getElementsByTagName("select")[0].value;
-        console.log(`${i}: select element: ${divs[i].getElementsByTagName("select")[0]}, option: ${option}`);
+        // console.log(`${i}: select element: ${divs[i].getElementsByTagName("select")[0]}, option: ${option}`);
         if(option != null && option != undefined && option != "none"){
             filterList.push(option);
         }
     }
 
-    // // debug log TODO
-    // let txt = "FilterList: [";
-    // for (let i = 0; i < filterList.length; i++) {
-    //     txt += `${filterList[i]}, `;
-    // }
-    // console.log(txt + "]");
+    // debug log TODO
+    let txt = "FilterList: [";
+    for (let i = 0; i < filterList.length; i++) {
+        txt += `${filterList[i]}, `;
+    }
+    console.log(txt + "]");
 
     // copy all tasks into filtered tasks
     let filteredTasks = [];
