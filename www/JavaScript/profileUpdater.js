@@ -1,4 +1,4 @@
-// updates the profile.html fields
+    // updates the profile.html fields
 let currUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
 console.log("currUser " + currUser);
