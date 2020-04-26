@@ -93,11 +93,10 @@ function submitcreate2(newUser, prevUsers) {
 function submittask() {
     let taskName = document.getElementById("taskName").value;
     let taskType = document.getElementById("taskType").value;
-    let taskDescription = document.getElementById("taskDescription").value;
-    let taskUrgency = document.getElementById("taskUrgency").value;
+    let taskDescription = document.getElementById("taskDesc").value;
+    let taskUrgency = parseInt(document.getElementById("taskUrgency").value);
+    // console.log("submittask() curr urgency: " + taskUrgency);
     let timestamp = Date.now();
-    let taskLongitude = getLongitude();
-    let taskLatitude = getLatitude();
 
     let currUser = JSON.parse(sessionStorage.getItem("currentUser"));
     /*document.getElementById("tasktitle").innerHTML ="Task: ";
@@ -106,28 +105,128 @@ function submittask() {
     document.getElementById("locationdisp").innerHTML = location;
     */
 
+    let taskPos = document.getElementById("taskPos").value;
+
     let valid = true;
+    // name
     if (taskName.length <= 0) {
         let e = document.getElementById("taskNameLabel");
-        if(e.innerText.substring(0, 8) != "Invalid"){
+        if(e.innerText.substring(0, 8) != "Invalid "){
             e.innerText = "Invalid " + e.innerText;
         }
         e.classList.add("invalidField");
         valid = false;
     }
+    else{
+        let e = document.getElementById("taskNameLabel");
+        if(e.innerText.substring(0, 8) == "Invalid "){
+            e.innerText = "Task Name:";
+            e.classList.remove("invalidField");
+        }
+    }
+    // type
+    if(taskType.length <= 0){
+        let e = document.getElementById("taskTypeLabel");
+        if(e.innerText.substring(0, 8) != "Invalid "){
+            e.innerText = "Invalid " + e.innerText;
+        }
+        e.classList.add("invalidField");
+        valid = false;
+    }
+    else{
+        let e = document.getElementById("taskTypeLabel");
+        if(e.innerText.substring(0, 8) == "Invalid "){
+            e.innerText = "Task Type:";
+            e.classList.remove("invalidField");
+        }
+    }
+    // description
     if (taskDescription.length <= 0) {
-        let e = document.getElementById("taskDescriptionLabel");
-        if(e.innerText.substring(0, 8) != "Invalid"){
+        let e = document.getElementById("taskDescLabel");
+        if(e.innerText.substring(0, 8) != "Invalid "){
             e.innerText = "Invalid " + e.innerText;
         }
         e.classList.add("invalidField");
         valid = false;
     }
+    else{
+        let e = document.getElementById("taskDescLabel");
+        if(e.innerText.substring(0, 8) == "Invalid "){
+            e.innerText = "Task Description:";
+            e.classList.remove("invalidField");
+        }
+    }
+    // urgency
+    if (taskUrgency == NaN) {
+        let e = document.getElementById("taskUrgencyLabel");
+        if(e.innerText.substring(0, 8) != "Invalid "){
+            e.innerText = "Invalid " + e.innerText;
+        }
+        e.classList.add("invalidField");
+        valid = false;
+    }
+    else{
+        let e = document.getElementById("taskUrgencyLabel");
+        if(e.innerText.substring(0, 8) == "Invalid "){
+            e.innerText = "Task Urgency:";
+            e.classList.remove("invalidField");
+        }
+    }
+    // logic for task position
+    if (taskPos.length > 0) {
+        console.log("taskPos: " + taskPos);
+        // selected user position
+        if(taskPos == "User Position"){
+            if(currUser.latitude != null && currUser.longitude != null && currUser.latitude != -1 && currUser.longitude != -1){
+                taskPos = [currUser.latitude, currUser.longitude];
+            }
+            else{
+                let e = document.getElementById("taskPosLabel");
+                e.innerText = "Invalid: Logged-In User Has No Location";
+                e.classList.add("invalidField");
+                valid = false;
+            }
+        }
+        // current location
+        else if(taskPos == "Current Position"){
+            console.log("hello");
+            getCurrPos(function (callbackVal) {
+                console.log("callback here: taskPos: " + callbackVal);
+                console.log(`(${callbackVal.lat}, ${callbackVal.lng})`);
+                taskPos = [callbackVal.lat, callbackVal.lng];
+                if(taskPos === -1){
+                    let e = document.getElementById("taskPosLabel");
+                    e.innerText = "Invalid: Current Position Could Not Be Found";
+                    e.classList.add("invalidField");
+                    valid = false;
+                }
+                submitTask2(taskName, taskType, taskDescription, taskUrgency, timestamp, currUser, taskPos, valid);
+            });
+            return;
+        }
+        // other
+        else{
+            // TODO: search by google maps api?
+            let e = document.getElementById("taskPosLabel");
+            e.innerText = "Sorry, Google Maps Searching is Not Implemented Yet";
+            e.classList.add("invalidField");
+            valid = false;
+        }
+    }
+    else{
+        let e = document.getElementById("taskPosLabel");
+        e.innerText = "Invalid Location";
+        e.classList.add("invalidField");
+        valid = false;
+    }
+    submitTask2(taskName, taskType, taskDescription, taskUrgency, timestamp, currUser, taskPos, valid);
+}
+function submitTask2(taskName, taskType, taskDescription, taskUrgency, timestamp, currUser, taskPos, valid) {
     if (!valid) {
         return;
     }
 
-    let newTask = new Task(taskName, currUser.username, taskType, taskDescription, taskUrgency, taskLongitude, taskLatitude, timestamp);
+    let newTask = new Task(taskName, currUser.username, taskType, taskDescription, taskUrgency, taskPos[1], taskPos[0], timestamp);
 
     pushTask(newTask, function () {
         console.log("Task pushed successfully");
@@ -208,6 +307,15 @@ function createtask() {
     let x = document.getElementById("taskform");
     let y = document.getElementById("addtask");
     if (x.style.display == undefined || x.style.display == "none") {
+        // update all the options for tasktype
+        for (let i = 0; i < taskTypes.length; i++) {
+            let curr = taskTypes[i];
+            let currE = document.createElement("option");
+            currE.value = curr;
+            currE.innerText = curr;
+            document.getElementById("taskTypeList").appendChild(currE);
+        }
+
         x.style.display = "block";
         y.classList.add("rotate135");
     }

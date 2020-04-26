@@ -319,6 +319,7 @@ ul {
 
 #create, #sign-in {
     display: none;
+    max-height: 100vh;
 }
 
 #profile-pic {
@@ -447,10 +448,11 @@ h3 {
     display: none;
     z-index: 2;
     position: fixed;
+    border-radius: 25px;
     width: calc(80vw - 20px);
     left: calc(10px + 10vw);
-    top: 20vh;
-    height: 60vh;
+    top: 17.25vh;
+    height: 65vh;
 }
 
 .rotate135 {

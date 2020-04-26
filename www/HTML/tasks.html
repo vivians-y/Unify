@@ -13,6 +13,7 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700&display=swap"
           rel="stylesheet">
+    <script src="./maps.js"></script>
     <script src="../JavaScript/form.js"></script>
 </head>
 <body class="tasks">
@@ -52,10 +53,36 @@
 
 
 <div id="taskform">
-    <label for="task" id="taskLabel">Enter the task:</label><br>
-    <input id="task" name="fname" type="text"><br>
-    <label for="location">Enter your location</label><br>
-    <input id="location" name="lname" type="text"><br>
+<!--    name-->
+    <label for="taskName" id="taskNameLabel">Task Name:</label><br>
+    <input id="taskName" name="taskName" type="text"><br>
+<!--    type-->
+    <label for="taskType" id="taskTypeLabel">Task Type:</label><br>
+    <input id="taskType" list="taskTypeList" type="text" />
+    <datalist id="taskTypeList" name="taskType" type="range">
+    </datalist><br>
+<!--    description-->
+    <label for="taskDesc" id="taskDescLabel">Task Description:</label><br>
+    <input id="taskDesc" name="taskDesc" type="text"><br>
+<!--    urgency-->
+    <label for="taskUrgency" id="taskUrgencyLabel">Task Urgency:</label><br>
+    <input id="taskUrgency" list="taskUrgencyList" type="text" />
+    <datalist id="taskUrgencyList" name="taskUrgency">
+        <option value="1">Non-Urgent</option>
+        <option value="2">Within the Month</option>
+        <option value="3">Within the Week</option>
+        <option value="4">Within 3 Days</option>
+        <option value="5">Today if Possible</option>
+    </datalist><br>
+<!--    <input id="taskUrgency" name="taskUrgency" type="range" min=1 max=5><br>-->
+<!--    position-->
+    <label for="taskPos" id="taskPosLabel">Location:</label><br>
+    <input id="taskPos" list="taskPosList" type="text" />
+    <datalist id="taskPosList" name="taskPosList">
+        <option value="User Position">Use Account Home Location</option>
+        <option value="Current Position">Use Current Location</option>
+        <option value="None of The Above">(type to search with Google Maps)</option>
+    </datalist><br>
     <div class="button" onclick="submittask()">Add task</div>
 </div>
 

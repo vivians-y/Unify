@@ -47,8 +47,8 @@ function initMap() {
     //directionsRenderer.setMap(map);
 
 }
-function getCurrPos(){
-    // Try HTML5 geolocation.
+function getCurrPos(callback){
+    // Try HTML5 geolocation
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             let pos = {
@@ -56,13 +56,15 @@ function getCurrPos(){
                 lng: position.coords.longitude
             };
 
-            return(pos);
+            callback(pos);
         }, function() {
             console.log("Browser could not find your location");
+            callback(-1);
         });
     } else {
         // Browser doesn't support Geolocation
         console.log("Browser could not find your location because it was blocked or does not support.");
+        callback(-1);
     }
 }
 
