@@ -216,3 +216,17 @@ function createtask() {
         y.classList.remove("rotate135");
     }
 }
+
+function searchopen() {
+    let y = document.getElementById("searchbox");
+    let x = document.getElementById("search_open");
+    console.log("hello");
+    if (y.style.display == undefined || y.style.display == "none") {
+        y.style.display = "block";
+        x.style.opacity="1";
+    }
+    else {
+        y.style.display = "none";
+        x.style.opacity=".8";
+    }
+}

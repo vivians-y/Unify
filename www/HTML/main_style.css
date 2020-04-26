@@ -38,7 +38,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .tasks {
@@ -106,9 +106,9 @@ label {
     margin-top: 40px;
 }
 
-#leaf-dos, #leaf-uno, #squiggle-uno {
-    position: absolute;
+.leaf-dos, .leaf-uno, .squiggle-uno {
     z-index: -1;
+    position: fixed;
 }
 
 .fade-out {
@@ -127,19 +127,19 @@ label {
     }
 }
 
-#leaf-uno {
+.leaf-uno {
     top: calc(100px - 5vh);
     left: 0;
     height: calc(35vw + 20vh);
 }
 
-#leaf-dos {
+.leaf-dos {
     top: calc(200px + 40vw - 15vw);
     height: calc(15vw + 15vh);
     left: 0;
 }
 
-#squiggle-uno {
+.squiggle-uno {
     right: 0;
     bottom: 0;
     height: calc(30vw + 20vh);
@@ -157,12 +157,12 @@ label {
     text-align: left;
 }
 
-.task-item-container .task-seperator:before {
+.task-item-container .task-separator:before {
     content: " ";
     display: block;
     margin-top: 14px;
     margin-bottom: 8px;
-    height: 0.2vh;
+    height: 1px;
     bottom: 0;
     z-index: 10;
     border-radius: 3px;
@@ -177,6 +177,7 @@ label {
     max-width: 90%;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 
 
@@ -186,7 +187,6 @@ label {
     width: calc(15vh);
     height: calc(15vh);
     position: absolute;
-    margin-top: 2.5vh;
 }
 
 .urgency, .urgency img {
@@ -195,7 +195,6 @@ label {
     width: calc(5vh);
     height: calc(5vh);
     position: absolute;
-    margin-top: 7.5vh;
 }
 
 .horflex {
@@ -226,6 +225,52 @@ label {
     background-color: rgba(255, 255, 255, .1);
 }
 
+
+.hamburger-icon {
+    width: calc(40px);
+    float: right;
+    box-sizing: content-box;
+    z-index: 1;
+    left: 0;
+}
+
+.search-icon, #search_open{
+    float: right;
+    box-sizing: content-box;
+    z-index: 1;
+    right: 0;
+    opacity: .8;
+}
+
+#search_open:hover{
+    opacity: 1;
+}
+
+#searchbox{
+    display: none;
+}
+
+.st0 {
+    fill: none;
+}
+
+.st1 {
+    fill: rgba(255, 255, 255, .8);
+}
+
+#hamburger {
+    left: 0;
+    display: block;
+    position: absolute;
+    width: calc(40px);
+    height: calc(40px);
+    float: right;
+    margin: 0 30px 0 5px;
+    box-sizing: content-box;
+    opacity: 0;
+    z-index: 2;
+}
+
 ul {
     padding: 0;
     margin: 0;
@@ -242,17 +287,17 @@ ul {
 
 header {
     z-index: 2;
-    width: 100%;
-    padding: 0 calc(4vw + 10px) 10px;
+    width: 100vw;
     top: 0;
     height: 100px;
     float: right;
     position: fixed;
-    display: block;
     background: transparent;
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px calc(20px + 5vw);
 }
-
 
 nav {
     display: -webkit-box;
@@ -298,9 +343,6 @@ nav a:hover:after {
     width: 100%;
 }
 
-#hamburger, .hamburger-icon {
-    display: none;
-}
 
 .hamburger-menu {
     background-color: rgb(35, 23, 85);
@@ -367,6 +409,8 @@ h3 {
     position: fixed;
     width: calc(80vw - 20px);
     left: calc(10px + 10vw);
+    top: 20vh;
+    height: 60vh;
 }
 
 .rotate135 {
@@ -401,43 +445,6 @@ nav {
 
 nav a {
     left: -50%;
-}
-
-header {
-    padding: 15px;
-}
-
-
-.hamburger-icon {
-    display: block;
-    position: absolute;
-    width: calc(40px);
-    float: right;
-    margin: 0 30px 0 5px;
-    box-sizing: content-box;
-    z-index: 1;
-    right: 0;
-}
-
-.st0 {
-    fill: none;
-}
-
-.st1 {
-    fill: rgba(255, 255, 255, .8);
-}
-
-#hamburger {
-    right: 0;
-    display: block;
-    position: absolute;
-    width: calc(40px);
-    height: calc(40px);
-    float: right;
-    margin: 0 30px 0 5px;
-    box-sizing: content-box;
-    opacity: 0;
-    z-index: 2;
 }
 
 #hamburger:checked ~ nav {
