@@ -76,7 +76,7 @@ function makeAllMarkers(){
         let mapOptions = {
             zoom: 4,
             center: new google.maps.LatLng(startLat,startLon)
-        }
+        };
         let map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
         let markers = [];
@@ -91,7 +91,6 @@ function makeAllMarkers(){
                 currMarker.setMap(map);
             }
         }
-
     });
 }
 function getCurrPos(callback){
