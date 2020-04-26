@@ -54,11 +54,11 @@ function giveTextBoxesShit() {
     }
 // location
     if (currUser.latitude != null && currUser.longitude != null && currUser.latitude != -1 && currUser.longitude != -1) {
-        document.getElementById("profileLatitudeEdit").placeholder = `Location: ${currUser.latitude}`;
-        document.getElementById("profileLongitudeEdit").placeholder = `Location: ${currUser.longitude})`;
+        document.getElementById("profileLatitudeEdit").placeholder = `Latitude: ${currUser.latitude}`;
+        document.getElementById("profileLongitudeEdit").placeholder = `Longitude ${currUser.longitude})`;
     } else {
-        document.getElementById("profileLatitudeEdit").placeholder = `Location: N/A`;
-        document.getElementById("profileLongitudeEdit").placeholder = `Location: N/A`;
+        document.getElementById("profileLatitudeEdit").placeholder = `Latitude: N/A`;
+        document.getElementById("profileLongitudeEdit").placeholder = `Longitude: N/A`;
     }
 }
 
