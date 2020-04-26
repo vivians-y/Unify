@@ -189,12 +189,35 @@ label {
     position: absolute;
 }
 
-.urgency, .urgency img {
-    background-image: url("Assets/priority_high-24px.svg");
+.urgency {
     background-size: cover;
     width: calc(5vh);
     height: calc(5vh);
     position: absolute;
+}
+
+.alert0 {
+    background-image: url("Assets/no alert.svg");
+}
+
+.alert1 {
+    background-image: url("Assets/alert1.svg");
+}
+
+.alert2 {
+    background-image: url("Assets/alert2.svg");
+}
+
+.alert3 {
+    background-image: url("Assets/alert3.svg");
+}
+
+.alert4 {
+    background-image: url("Assets/alert4.svg");
+}
+
+.distance-away{
+    margin: 5px;
 }
 
 .horflex {
@@ -215,6 +238,11 @@ label {
 .mailPhone svg {
     width: calc(30px);
     position: relative;
+    margin-bottom: -7px;
+}
+
+.mailPhone {
+    line-height: calc(3vh + 20px);
 }
 
 .task-item-container::-webkit-scrollbar {
@@ -234,7 +262,7 @@ label {
     left: 0;
 }
 
-.search-icon, #search_open{
+.search-icon, #search_open {
     float: right;
     box-sizing: content-box;
     z-index: 1;
@@ -242,11 +270,11 @@ label {
     opacity: .8;
 }
 
-#search_open:hover{
+#search_open:hover {
     opacity: 1;
 }
 
-#searchbox{
+#searchbox {
     display: none;
     position: fixed;
     right: calc(10vw + 10px);
@@ -254,7 +282,7 @@ label {
     top: 0;
 }
 
-#search{
+#search {
     width: 200px;
     border: 0 solid rgba(255, 255, 255, .7);
     background-color: rgba(255, 255, 255, .2);
