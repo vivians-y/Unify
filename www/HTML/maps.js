@@ -1,5 +1,7 @@
 let map, infoWindow;
 // makeAllMarkers();
+
+
 function initMap() {
     // map = new google.maps.Map(document.getElementById('map'), {
     //     center: {lat: 29.7604, lng: -95.3698},
@@ -12,20 +14,20 @@ function initMap() {
     //     center: {lat: -34.397, lng: 150.644},
     //     zoom: 6
     // });
-    // var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-    // var mapOptions = {
-    //     zoom: 4,
-    //     center: myLatlng
-    // }
-    // var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    //
+    let america = new google.maps.LatLng(37.0902,-95.7129)
+    var mapOptions = {
+        zoom: 4,
+        center: america
+    }
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
     // var marker = new google.maps.Marker({
     //     position: myLatlng,
     //     title:"Hello World!"
     // });
 
 // To add the marker to the map, call setMap();
-    marker.setMap(map);
+
     //
     // let org1 = new google.maps.LatLng(29.7604,-95.3698);
     // let dest1 = new google.maps.LatLng(30.6280,-96.3344);
@@ -63,6 +65,7 @@ function initMap() {
     //directionsRenderer.setMap(map);
 
 }
+setTimeout(makeAllMarkers, 2000);
 function makeAllMarkers(){
     getAllTasks(function (tasksOut) {
         // console.log("loadAllTasks callback");
@@ -78,8 +81,6 @@ function makeAllMarkers(){
             center: new google.maps.LatLng(startLat,startLon)
         };
         let map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-        let markers = [];
         let tasks = tasksOut;
         for(let i = 0; i<tasks.length;i++){
             if(tasks[i].taskLatitude==-1||tasks[i].taskLatitude==null||tasks[i].taskLongitude==0||tasks[i].taskLatitude==null){

@@ -2,9 +2,6 @@
 <html>
 <head>
     <link href="./maps.css" rel="stylesheet">
-</head>
-<body>
-    <div id="map"></div>
     <!--DATABASE STUFF HERE: PLEASE PUT ALL SCRIPT TAGS BENEATH THIS PLS-->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
@@ -37,10 +34,13 @@
     <script src="./JavaScript/task.js"></script>
 
     <script src="./JavaScript/dataLoaders.js"></script>
-
     <script src="./maps.js"></script>
-    <!-- Replace the value of the key parameter with your own API key. -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSWtpg4Yn5C69H0NsqwPhsP5SISsm6Nvk&callback=makeAllMarkers" async defer></script>
+<!-- Replace the value of the key parameter with your own API key. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSWtpg4Yn5C69H0NsqwPhsP5SISsm6Nvk&callback=initMap" async defer></script>
+
+</head>
+<body>
+    <div id="map"></div>
 
 </body>
 </html>
