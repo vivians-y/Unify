@@ -66,6 +66,7 @@ function initMap() {
 
 }
 setTimeout(makeAllMarkers, 2000);
+
 function makeAllMarkers(){
     getAllTasks(function (tasksOut) {
         // console.log("loadAllTasks callback");

@@ -165,7 +165,7 @@ function createtask() {
     let y = document.getElementById("addtask");
     if (x.style.display == undefined || x.style.display == "none") {
 
-        if(document.getElementById("taskTypeList").getElementsByTagName("option").length >= taskTypes.length) {
+        if(document.getElementById("taskTypeList").getElementsByTagName("option").length <= taskTypes.length) {
             // update all the options for tasktype
             for (let i = 0; i < taskTypes.length; i++) {
                 let curr = taskTypes[i];
