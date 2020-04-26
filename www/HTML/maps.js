@@ -69,7 +69,6 @@ function initMap() {
 
 function makeAllMarkers(){
     getCurrPos(callBackMegaCoolBoy);
-
 }
 function callBackMegaCoolBoy(valout){
     getAllTasks(function (tasksOut) {
@@ -155,7 +154,7 @@ function showDist(latitude1,longitude1,latitude2,longitude2,directionsServiceT,d
 function giveDist(distanceArr){
     let val = distanceArr[0][0];
     let newval = val/5280;
-    return newval.toString();
+    return newval.toString() + "miles";
 }
 function calcDistWithLatLon(lat1,long1,lat2,long2, callbackFunc){
     let origin = [new google.maps.LatLng(lat1,long1)];
