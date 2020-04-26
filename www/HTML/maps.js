@@ -155,7 +155,7 @@ function giveDist(distanceArr){
     let val = distanceArr[0][0];
     let newval = val/5280;
     newval = newval.toFixed(2);
-    return newval.toString() + "miles";
+    return newval.toString() + " miles";
 }
 function calcDistWithLatLon(lat1,long1,lat2,long2, callbackFunc){
     let origin = [new google.maps.LatLng(lat1,long1)];
