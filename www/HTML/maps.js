@@ -1,4 +1,5 @@
 let map, infoWindow;
+// makeAllMarkers();
 function initMap() {
     // map = new google.maps.Map(document.getElementById('map'), {
     //     center: {lat: 29.7604, lng: -95.3698},
@@ -7,45 +8,91 @@ function initMap() {
     // var directionsService = new google.maps.DirectionsService();
     // var directionsRenderer = new google.maps.DirectionsRenderer();
     //showDist(29.7604,-95.3698,30.6280,-96.3344,directionsService,directionsRenderer)
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 6
-    });
-    let org1 = new google.maps.LatLng(29.7604,-95.3698);
-    let dest1 = new google.maps.LatLng(30.6280,-96.3344);
-    let originArr = [org1];
-    let destinationArr = [dest1];
-    let distanceCalculated = calcDistWithLatLon(29.7604, -95.3698,30.6280,-96.3344);
-    infoWindow = new google.maps.InfoWindow;
-    console.log("the distance calculated is:"+distanceCalculated);
+    // map = new google.maps.Map(document.getElementById('map'), {
+    //     center: {lat: -34.397, lng: 150.644},
+    //     zoom: 6
+    // });
+    // var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
+    // var mapOptions = {
+    //     zoom: 4,
+    //     center: myLatlng
+    // }
+    // var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    //
+    // var marker = new google.maps.Marker({
+    //     position: myLatlng,
+    //     title:"Hello World!"
+    // });
+
+// To add the marker to the map, call setMap();
+    marker.setMap(map);
+    //
+    // let org1 = new google.maps.LatLng(29.7604,-95.3698);
+    // let dest1 = new google.maps.LatLng(30.6280,-96.3344);
+    // let originArr = [org1];
+    // let destinationArr = [dest1];
+    // //let distanceCalculated = calcDistWithLatLon(29.7604, -95.3698,30.6280,-96.3344);
+    // infoWindow = new google.maps.InfoWindow;
+    //console.log("the distance calculated is:"+distanceCalculated);
     // Try HTML5 geolocation.
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-        }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-        });
-    } else {
-        // Browser doesn't support Geolocation
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
-
-    var mapOptions = {
-        zoom:7,
-        center: {lat: 29.7604, lng: -95.3698}
-    }
+    // if (navigator.geolocation) {
+    //     navigator.geolocation.getCurrentPosition(function(position) {
+    //         var pos = {
+    //             lat: position.coords.latitude,
+    //             lng: position.coords.longitude
+    //         };
+    //
+    //         infoWindow.setPosition(pos);
+    //         infoWindow.setContent('Location found.');
+    //         infoWindow.open(map);
+    //         map.setCenter(pos);
+    //     }, function() {
+    //         handleLocationError(true, infoWindow, map.getCenter());
+    //     });
+    // } else {
+    //     // Browser doesn't support Geolocation
+    //     handleLocationError(false, infoWindow, map.getCenter());
+    // }
+    //
+    // var mapOptions = {
+    //     zoom:7,
+    //     center: {lat: 29.7604, lng: -95.3698}
+    // }
     //console.log("HI1132e4"+distances[0]);
     //var map = new google.maps.Map(document.getElementById('map'), mapOptions);
     //directionsRenderer.setMap(map);
 
+}
+function makeAllMarkers(){
+    getAllTasks(function (tasksOut) {
+        // console.log("loadAllTasks callback");
+        let currUser = JSON.parse(sessionStorage.getItem("currentUser"));
+        let startLat=0;
+        let startLon=0;
+        if (currUser.latitude != null && currUser.longitude != null && currUser.latitude != -1 && currUser.longitude != -1) {
+            startLat = currUser.latitude;
+            startLon = currUser.longitude;
+        }
+        let mapOptions = {
+            zoom: 4,
+            center: new google.maps.LatLng(startLat,startLon)
+        }
+        let map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        let markers = [];
+        let tasks = tasksOut;
+        for(let i = 0; i<tasks.length;i++){
+            if(tasks[i].taskLatitude==-1||tasks[i].taskLatitude==null||tasks[i].taskLongitude==0||tasks[i].taskLatitude==null){
+                let currLatLng = new google.maps.LatLng(tasks[i].taskLatitude,tasks[i].taskLongitude);
+                let currMarker = new google.maps.Marker({
+                    position: currLatLng,
+                    title:tasks[i].taskName
+                });
+                currMarker.setMap(map);
+            }
+        }
+
+    });
 }
 function getCurrPos(callback){
     // Try HTML5 geolocation
