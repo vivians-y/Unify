@@ -1,14 +1,3 @@
-var userList = [];
-var taskList = [];
-
-function getUserData(){
-	
-}
-
-function getTaskData(){
-	
-}
-
 function findUserByUsername(username){ //Returns position in userList array
 	for(i=0; i < userList.length; i++)
 		if(userList[i].username == username)
@@ -16,7 +5,7 @@ function findUserByUsername(username){ //Returns position in userList array
 }
 
 
-function filterTasks(filterType){ //Filter types are "VolunteeringOnly", "Food&WaterOnly", "LendingOnly", "UrgencyAtLeast2", "UrgencyAtLeast3", "UrgencyAtLeast4", "KarmaAtLeast100", "Within1Mile" ,"Within5Miles", "Within10Miles", and "Within25Miles"
+function filterTasks(tastList, filterType){ //Filter types are "VolunteeringOnly", "Food&WaterOnly", "LendingOnly", "UrgencyAtLeast2", "UrgencyAtLeast3", "UrgencyAtLeast4", "KarmaAtLeast100", "Within1Mile" ,"Within5Miles", "Within10Miles", and "Within25Miles"
 	
 	//getAllTasks(); //Refreshes tasks
 	
@@ -71,7 +60,7 @@ function filterTasks(filterType){ //Filter types are "VolunteeringOnly", "Food&W
 
 }
 
-function sortTasks(sortType) {
+function sortTasks(taskList, sortType) {
 	let sorted = false;
 	if(taskList.length == 1)
 		return;

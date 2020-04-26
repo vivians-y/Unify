@@ -62,6 +62,30 @@ function pushUser(user, callback = function () {}){
     });
 }
 
+function updateUser(user, callback = function () {}) {
+    let db = firebase.firestore();
+
+    db.collection(userAccountDatabaseName).doc(user.uuid).set({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        password: user.passw,
+        email: user.email,
+        phoneNumber: user.phoneNumber,
+        createdTasks: user.createdTasks,
+        karma: user.karma,
+        longitude: user.longitude,
+        latitude: user.latitude
+    })
+        .then(function(docRef) {
+            console.log("Document updated with ID: ", docRef.id);
+            setTimeout(callback(), 50);
+        })
+        .catch(function(error) {
+            console.error("Error updating document: ", error);
+        });
+}
+
 // returns an array of all tasks stored
 function getAllTasks(callback){
     let db = firebase.firestore();
@@ -86,7 +110,7 @@ function processTaskQuery(q) {
 
     for (let i = 0; i < arr.length; i++) {
         let curr = arr[i];
-        a.push(new Task(curr.get("taskName"), curr.get("taskCreatorUsername"), curr.get("taskType"), curr.get("taskDescription"), curr.get("taskUrgency"), curr.get("taskLongitude"), curr.get("taskLatitude")));
+        a.push(new Task(curr.get("taskName"), curr.get("taskCreatorUsername"), curr.get("taskType"), curr.get("taskDescription"), curr.get("taskUrgency"), curr.get("taskLongitude"), curr.get("taskLatitude"), curr.get("timestamp"), curr.id));
     }
 
     console.log(`Returning a: ${a}`);
@@ -104,6 +128,7 @@ function pushTask(task, callback = function () {}){
         taskDescription: task.taskDescription,
         taskUrgency: task.taskUrgency,
         taskLongitude: task.taskLongitude,
+        timestamp: task.timestamp,
         taskLatitude: task.taskLatitude
     })
         .then(function(docRef) {
@@ -116,16 +141,23 @@ function pushTask(task, callback = function () {}){
         });
 }
 
-// // Add a second document with a generated ID.
-// db.collection("users").add({
-//     first: "Alan",
-//     middle: "Mathison",
-//     last: "Turing",
-//     born: 1912
-// })
-// .then(function(docRef) {
-//     console.log("Document written with ID: ", docRef.id);
-// })
-// .catch(function(error) {
-//     console.error("Error adding document: ", error);
-// });
+function updateTask(task, callback = function () {}) {
+    let db = firebase.firestore();
+
+    db.collection(taskDatabaseName).doc(task.uuid).set({
+        taskName: task.taskName,
+        taskCreatorUsername: task.taskCreatorUsername,
+        taskType: task.taskType,
+        taskDescription: task.taskDescription,
+        taskUrgency: task.taskUrgency,
+        taskLongitude: task.taskLongitude,
+        taskLatitude: task.taskLatitude
+    })
+        .then(function(docRef) {
+            console.log("Document updated with ID: ", docRef.id);
+            setTimeout(callback(), 50);
+        })
+        .catch(function(error) {
+            console.error("Error updating document: ", error);
+        });
+}

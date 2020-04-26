@@ -95,8 +95,11 @@ function submittask() {
     let taskType = document.getElementById("taskType").value;
     let taskDescription = document.getElementById("taskDescription").value;
     let taskUrgency = document.getElementById("taskUrgency").value;
+    let timestamp = Date.now();
     let taskLongitude = getLongitude();
     let taskLatitude = getLatitude();
+
+    let currUser = JSON.parse(sessionStorage.getItem("currentUser"));
     /*document.getElementById("tasktitle").innerHTML ="Task: ";
     document.getElementById("locationtitle").innerHTML = "Location:";
     document.getElementById("taskdisp").innerHTML = task;
@@ -120,22 +123,14 @@ function submittask() {
         e.classList.add("invalidField");
         valid = false;
     }
-
     if (!valid) {
         return;
     }
 
-    let newTask = new Task(taskName, taskType, taskDescription, taskUrgency, taskLongitude, taskLatitude);
+    let newTask = new Task(taskName, currUser.username, taskType, taskDescription, taskUrgency, taskLongitude, taskLatitude, timestamp);
 
-    getAllTasks(function () {
-        submittask2(newTask);
-    });
-}
-
-function submittask2(newTask) {
-
-    pushData(data, function () {
-        console.log("Task Created");
+    pushTask(newTask, function () {
+        console.log("Task pushed successfully");
     });
 }
 
