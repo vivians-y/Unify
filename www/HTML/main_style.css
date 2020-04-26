@@ -28,7 +28,7 @@ body {
     border: 0;
     outline: 0;
     margin: 0;
-    font-family: "Montserrat", serif,  'Didact Gothic', "Roboto Light", Helvetica, Arial, sans-serif;
+    font-family: "Montserrat", serif, 'Didact Gothic', "Roboto Light", Helvetica, Arial, sans-serif;
     background-color: rgb(35, 23, 85);
     color: white;
     -ms-overflow-x: hidden;
@@ -172,8 +172,6 @@ label {
     margin-bottom: 8px;
     height: 1px;
     bottom: 0;
-    z-index: 10;
-    border-radius: 3px;
     width: 92vw;
     /*background-color: magenta;*/
     background: linear-gradient(to right, rgba(255, 255, 255, .7), rgba(255, 255, 255, 1), rgba(255, 255, 255, .7));
@@ -194,13 +192,6 @@ label {
     background-size: cover;
     width: calc(15vh);
     height: calc(15vh);
-    position: absolute;
-}
-
-.urgency {
-    background-size: cover;
-    width: calc(5vh);
-    height: calc(5vh);
     position: absolute;
 }
 
@@ -243,6 +234,29 @@ label {
     position: relative;
 }
 
+.nameUsername {
+    min-width: 20vw;
+    width: 20vw;
+}
+
+.desc {
+    min-width: 30vw;
+    width: 30vw;
+}
+
+
+.urgency {
+    background-size: cover;
+    width: calc(5vh);
+    height: calc(5vh);
+}
+
+.mailPhone {
+    width: 7vw;
+    min-width: 7vw;
+    font-weight: 200;
+}
+
 .mailPhone svg {
     width: calc(30px);
     position: relative;
@@ -267,7 +281,7 @@ label {
     float: right;
     box-sizing: content-box;
     position: relative;
-    z-index: 1;
+    z-index: 5;
     left: 0;
 }
 
@@ -282,8 +296,10 @@ label {
     top: 95px;
     left: 0;
     padding: 6px 8vw;
+    z-index: 1;
 }
-#task-filters label{
+
+#task-filters label {
     padding-top: 0;
     padding-right: 0.4vw;
 }
@@ -318,6 +334,13 @@ label {
     height: calc(40px);
 }
 
+#currLocButton {
+    height: 50px;
+    width: 110%;
+    left: -10%;
+    position: relative;
+}
+
 select {
     -webkit-appearance: button;
     -moz-appearance: button;
@@ -341,15 +364,16 @@ select {
     white-space: nowrap;
 }
 
-.small.button{
+.small.button {
     height: 30px;
     width: 150px;
     font-size: 15px;
 }
 
 select:active, select:hover {
-color: rgb(35, 23, 85);
+    color: rgb(35, 23, 85);
 }
+
 .select-selected:after {
     position: absolute;
     content: "";
@@ -377,7 +401,7 @@ color: rgb(35, 23, 85);
     margin: 0 30px 0 5px;
     box-sizing: content-box;
     opacity: 0;
-    z-index: 2;
+    z-index: 6;
 }
 
 ul {
@@ -397,7 +421,7 @@ ul {
 }
 
 header {
-    z-index: 2;
+    z-index: 4;
     width: 100vw;
     top: 0;
     height: 100px;
@@ -433,6 +457,8 @@ nav a {
     margin: 10px;
     position: relative;
     transition: 0.15s ease-out;
+    z-index: 5;
+    z-index: 5;
 }
 
 nav a:after {
@@ -463,21 +489,22 @@ nav a:hover:after {
     top: -100vh;
     position: absolute;
     transition: .5s ease-out;
+    z-index: 4;
 }
 
 h3, p, h4 {
-    font-weight: 200;
+    font-weight: 300;
 }
 
 h3 {
-    font-size: calc(24px + 1vw);
+    font-size: calc(17px + 1vw);
     margin: 5px;
 }
 
 h4 {
-    font-family: "Montserrat", serif;
     font-size: calc(18px + 1vw);
     font-weight: 200;
+    line-height: 40px;
 }
 
 #stars {
@@ -522,7 +549,7 @@ h4 {
     padding: 35px;
     background-color: #60569b;
     display: none;
-    z-index: 2;
+    z-index: 4;
     position: fixed;
     border-radius: 25px;
     width: calc(80vw - 20px);
@@ -538,7 +565,7 @@ h4 {
 #addtask, #editprofile, #submitprofile {
     right: 30px;
     bottom: 30px;
-    z-index: 4;
+    z-index: 2;
     position: absolute;
     width: 80px;
     height: 80px;
