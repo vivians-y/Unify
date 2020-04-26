@@ -216,7 +216,7 @@ label {
     background-image: url("Assets/alert4.svg");
 }
 
-.distance-away{
+.distance-away {
     margin: 5px;
 }
 
@@ -451,8 +451,8 @@ h3 {
     border-radius: 25px;
     width: calc(80vw - 20px);
     left: calc(10px + 10vw);
-    top: 17.25vh;
-    height: 65vh;
+    top: 12.25vh;
+    height: 75vh;
 }
 
 .rotate135 {
@@ -497,7 +497,7 @@ nav a {
     top: 0;
 }
 
-.edit{
+.edit {
     display: none;
 }
 

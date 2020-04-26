@@ -100,13 +100,15 @@ function getAllTasks(callback){
     // });
 
     db.collection(taskDatabaseName).get().then((querySnapshot) => {
-        callback(processUserQuery(querySnapshot));
+        callback(processTaskQuery(querySnapshot));
     });
 }
 
 function processTaskQuery(q) {
     let a = [];
     let arr = q.docs;
+
+    console.log("top of processTaskQuery, q: " + q);
 
     for (let i = 0; i < arr.length; i++) {
         let curr = arr[i];

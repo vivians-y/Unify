@@ -93,30 +93,7 @@ function sortTasks(taskList, sortType) {
 			}
 		}
 	}
-	refreshTaskListUI(1);
-}
-
-function refreshTaskListUI(pageNum){	//Changes the UI of the task list UI depending on page number
-	// update task 0
-	document.getElementById("task0").innerText = `Username: ${currUser.username}`;
-	// update task 1
-	document.getElementById("task1").innerText = `Karma: ${currUser.karma}`;
-	// update task 2
-	document.getElementById("task2").innerText = `Name: ${currUser.firstName} ${currUser.lastName}`;
-	// update task 3
-	document.getElementById("task3").innerText = `Email: ${currUser.email}`;
-	// update task 4
-
-	// update task 5
-
-	// update task 6
-	
-	// update task 7
-	
-	// update task 8
-	
-	// update task 9
-	
-
+	return taskList;
+	// refreshTaskListUI(1);
 }
 
