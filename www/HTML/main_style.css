@@ -90,7 +90,7 @@ hr {
 }
 
 input {
-    height: calc(30px + 2vh);
+    height: calc(15px + 2vw + 2vh);
     width: 80%;
     border: 1px solid rgba(255, 255, 255, .7);
     border-radius: 4px;

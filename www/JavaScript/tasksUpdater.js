@@ -23,10 +23,6 @@ function loadAllTasks(){
     getAllTasks(function (tasksOut) {
         // console.log("loadAllTasks callback");
         allTasks = tasksOut;
-        // console.log("printing allTasks:");
-        // for (let i = 0; i < allTasks.length; i++) {
-        //     console.log(` ${i}: ${JSON.stringify(allTasks[i])}`);
-        // }
 
         // load users
         getAllUsers(function (usersOut) {
@@ -78,7 +74,7 @@ function loadNextTen2(currPos, users) {
     // console.log(`filtered.len: ${filteredTasks.length}, all.len: ${allTasks.length}`);
 
     // sort
-    filteredTasks = sortTasks();
+    // filteredTasks = sortTasks();
 
     for (let i = 0; i < maxItemsOnPage; i++) {
         // console.log(`top of for loop: i: ${i}, idx: ${idx}`);
@@ -108,13 +104,19 @@ function loadNextTen2(currPos, users) {
         let nameUser = e.getElementsByClassName("nameUsername")[0];
         // task name
         nameUser.getElementsByTagName("h3")[0].innerText = currentTasks[i].taskName;
-        // distance TODO
+        // distance
         if(currPos !== -1) {
-            // distance can be found TODO
-            nameUser.getElementsByTagName("p")[0].innerText = `Not Implemented`;
+            let tLat = currentTasks[i].taskLatitude;
+            let tLong = currentTasks[i].taskLongitude;
+            if(!isNaN(tLat) && !isNaN(tLong)) {
+                tLat = parseFloat()
+                calcDistWithLatLon(currPos.lat, currPos.lng, currentTasks[i].taskLatitude, currentTasks[i].taskLongitude, function (distanceOut) {
+                    nameUser.getElementsByTagName("p")[0].innerText = `${distanceOut} miles away`;
+                });
+            }
         }
         else{
-            nameUser.getElementsByTagName("p")[0].innerText = `X mi away`;
+            nameUser.getElementsByTagName("p")[0].innerText = `Unknown Location`;
         }
 
         // description
