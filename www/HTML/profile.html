@@ -13,42 +13,49 @@
           rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700&display=swap"
           rel="stylesheet">
+    <script src="../JavaScript/form.js"></script>
 </head>
 <body>
 
 
 <header>
-    <!--Start Hamburger-->
-    <label for="hamburger"></label>
-    <input id="hamburger" type="checkbox">
-    <svg class="hamburger-icon" version="1.1" viewBox="0 0 24 24" x="0px"
-         xml:space="preserve"
-         xmlns="http://www.w3.org/2000/svg" y="0px">
-        <path class="st0" d="M0,0h24v24H0V0z"/>
-        <path class="st1" d="M3,18h18v-2H3V18z M3,13h18v-2H3V13z M3,6v2h18V6H3z"/>
-    </svg>
-    <div class="hamburger-menu"></div>
-    <!--End Hamburger-->
-    <nav>
-        <a href="#">Home</a>
-        <a href="profile.html">Profile</a>
-        <a href="tasks.html">Requests</a>
-    </nav>
+    <div>
+        <label for="hamburger"></label>
+        <input id="hamburger" type="checkbox">
+        <svg class="hamburger-icon" version="1.1" viewBox="0 0 24 24" x="0px"
+             xml:space="preserve"
+             xmlns="http://www.w3.org/2000/svg" y="0px">
+            <path class="st0" d="M0,0h24v24H0V0z"/>
+            <path class="st1" d="M3,18h18v-2H3V18z M3,13h18v-2H3V13z M3,6v2h18V6H3z"/>
+        </svg>
+        <div class="hamburger-menu"></div>
+        <nav>
+            <div class="hamburger-menu"></div>
+            <a href="pasttasks.html">Past Requests</a>
+            <a href="#">Profile</a>
+            <a href="tasks.html">Requests</a>
+        </nav>
+    </div>
 </header>
-
-
-<img id="profile-pic" src="Assets/hand.svg">
 <h2>Profile</h2>
+<img id="profile-pic" src="Assets/hand.svg">
+
 <div id="dispinfo">
-    <h3 id="profileUsername">Username</h3>
-    <h3 id="profileKarma">Karma</h3>
-    <h3 id="profileName">Name</h3>
-    <h3 id="profileEmail">Email</h3>
-    <h3 id="profilePhone">Phone Number</h3>
-    <h3 id="profileLocation">(Latitude, longitude)</h3>
-    <div class="button white-fill" onclick="showStuff()"><p>Edit Profile</p></div>
+    <h4 id="profileUsername">Username</h4>
+    <h4 id="profileKarma">Karma</h4>
+    <h4 id="profileName">Name</h4>
+    <h4 id="profileEmail">Email</h4>
+    <h4 id="profilePhone">Phone Number</h4>
+    <h4 id="profileLocation">(Latitude, longitude)</h4>
+    <svg height="60" id="editprofile" onclick="showStuff()" viewBox="0 0 24 24" width="60"
+         xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0h24v24H0V0z" fill="none"/>
+        <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM5.92 19H5v-.92l9.06-9.06.92.92L5.92 19zM20.71 5.63l-2.34-2.34c-.2-.2-.45-.29-.71-.29s-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41z"
+              fill="white"/>
+    </svg>
 </div>
 <div id="edit">
+    <br>
     <input id="profileUsernameEdit">
     <input id="profileFirstNameEdit">
     <input id="profileLastNameEdit">
@@ -56,8 +63,46 @@
     <input id="profilePhoneEdit">
     <input id="profileLatitudeEdit">
     <input id="profileLongitudeEdit">
-    <div class="button white-fill" onclick="showStuff()"><p>Submit Changes</p></div>
+    <svg id="submitprofile" onclick="showStuff()" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 0h24v24H0V0z" fill="none"/>
+        <path fill="white" d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+    </svg>
 </div>
+
+
+<svg class="leaf-uno" viewBox="0 0 629.41 561.17" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>.cls-1 {
+            fill: #60569b;
+            opacity: 0.35;
+        }</style>
+    </defs>
+    <path class="cls-1"
+          d="M1.07,203.08S81.89,115.89,258.66,55.77c22.83,12.81-10.41,94.86,4.13,129.13,14.55-29.08,88.28-139.17,120.79-162.51C454.77,8.15,536.54-.63,629.41,0,618,364.58,329.26,539.65,1.07,561.17Z"/>
+    <path class="cls-1"
+          d="M500.84,148.23C178.71,388.4,44.39,365.64,3.41,376.15,3.41,402.06,0,412.31,0,412.31S297.09,389.54,500.84,148.23Z"/>
+</svg>
+<svg class="squiggle-uno" viewBox="0 0 658 636.33" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>.cls-1 {
+            fill: #60569b;
+            opacity: 0.35;
+        }</style>
+    </defs>
+    <path class="cls-1"
+          d="M378,6.29C546.92-38.52,658,170.88,658,170.88V636.33H247.66s23.91-13.06,5.24-69.07S98,546.73,30.75,457.12,18.62,198.57,80.22,214.44,128.76,384.31,199.7,379.65,323.84,300.31,365.84,333s4.28,130.61,29.87,189.48c9.34,21.47,46.25,80.69,86.81,56.94,65.34-38.27,124.14-265.09-61.6-383.63C351.08,151.2,208,51.38,378,6.29Z"/>
+</svg>
+<svg class="leaf-dos" viewBox="0 0 519.64 303.65" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <style>.cls-1 {
+            fill: #60569b;
+            opacity: 0.35;
+        }</style>
+    </defs>
+    <path class="cls-1"
+          d="M0,22.17S.53,14.33,84.6,2.68s273.48,11.39,435,136C367.11,323.24,199,318.17,1,287.17,1,181.17,0,22.17,0,22.17Z"/>
+</svg>
+
 <!--DATABASE STUFF HERE: PLEASE PUT ALL SCRIPT TAGS BENEATH THIS PLS-->
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
