@@ -6,16 +6,32 @@ function initMap() {
     // });
     var directionsService = new google.maps.DirectionsService();
     var directionsRenderer = new google.maps.DirectionsRenderer();
-    calcDistance(29.7604,-95.3698,30.6280,-96.3344,directionsService,directionsRenderer)
+    showDist(29.7604,-95.3698,30.6280,-96.3344,directionsService,directionsRenderer)
+
+    let org1 = new google.maps.LatLng(29.7604,-95.3698);
+    let dest1 = new google.maps.LatLng(30.6280,-96.3344);
+    let originArr = [org1];
+    let destinationArr = [dest1];
+    calcDist(originArr, destinationArr);
     var mapOptions = {
         zoom:7,
         center: {lat: 29.7604, lng: -95.3698}
     }
-
+    //console.log("HI1132e4"+distances[0]);
     var map = new google.maps.Map(document.getElementById('map'), mapOptions);
     directionsRenderer.setMap(map);
+
 }
-function calcDistance(latitude1,longitude1,latitude2,longitude2,directionsServiceT,directionsRendererT){
+function printDistances(distances){
+    console.log(distances.length);
+    for(let i = 0; i<distances.length;i++){
+        for(let j = 0; j<distances[i].length; j++) {
+            console.log("HI"+distances[i][j]);
+        }
+    }
+
+}
+function showDist(latitude1,longitude1,latitude2,longitude2,directionsServiceT,directionsRendererT){
 
     var loc1 = new google.maps.LatLng(latitude1,longitude1);
     var loc2 = new google.maps.LatLng(latitude2,longitude2);
@@ -29,4 +45,44 @@ function calcDistance(latitude1,longitude1,latitude2,longitude2,directionsServic
             directionsRendererT.setDirections(result);
         }
     });
+}
+
+function calcDist(originArr, destinationArr){
+
+    console.log(originArr);
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix(
+        {
+            origins: originArr,
+            destinations: destinationArr,
+            travelMode: 'DRIVING',
+            // transitOptions: TransitOptions,
+            // drivingOptions: DrivingOptions,
+            // unitSystem: UnitSystem,
+            avoidHighways: false,
+            avoidTolls: false
+        }, callback);
+    //let gay = distancesArr
+}
+function callback(response, status) {
+    if (status == 'OK') {
+        var origins = response.originAddresses;
+        var destinations = response.destinationAddresses;
+        let distancesArr = [];
+        for (var i = 0; i < origins.length; i++) {
+            var results = response.rows[i].elements;
+            for (var j = 0; j < results.length; j++) {
+                var element = results[j];
+                var distance = element.distance.text;
+                var duration = element.duration.text;
+                var from = origins[i];
+                var to = destinations[j];
+                let currDist = [distance,duration,from,to];
+                distancesArr.push(currDist);
+                console.log(distance);
+            }
+        }
+        printDistances(distancesArr);
+    }
+
 }
