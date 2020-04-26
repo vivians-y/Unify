@@ -32,7 +32,7 @@ function processUserQuery(q) {
         a.push(new User(curr.get("firstName"), curr.get("lastName"), curr.get("username"), curr.get("password"), curr.get("email"), curr.get("phoneNumber"), curr.get("longitude"), curr.get("latitude"), curr.get("createdTasks"), curr.id, curr.get("karma")));
     }
 
-    console.log(`Returning a: ${a}`);
+    // console.log(`Returning a: ${a}`);
     return a;
 }
 
@@ -78,7 +78,7 @@ function updateUser(user, callback = function () {}) {
         latitude: user.latitude
     })
         .then(function(docRef) {
-            console.log("Document updated with ID: ", docRef.id);
+            console.log("Document updated with ID: ", user.uuid);
             setTimeout(callback(), 50);
         })
         .catch(function(error) {
@@ -108,14 +108,14 @@ function processTaskQuery(q) {
     let a = [];
     let arr = q.docs;
 
-    console.log("top of processTaskQuery, q: " + q);
+    // console.log("top of processTaskQuery, q: " + q);
 
     for (let i = 0; i < arr.length; i++) {
         let curr = arr[i];
         a.push(new Task(curr.get("taskName"), curr.get("taskCreatorUsername"), curr.get("taskType"), curr.get("taskDescription"), curr.get("taskUrgency"), curr.get("taskLongitude"), curr.get("taskLatitude"), curr.get("timestamp"), curr.id));
     }
 
-    console.log(`Returning a: ${a}`);
+    // console.log(`Returning a: ${a}`);
     return a;
 }
 
@@ -156,7 +156,7 @@ function updateTask(task, callback = function () {}) {
         taskLatitude: task.taskLatitude
     })
         .then(function(docRef) {
-            console.log("Document updated with ID: ", docRef.id);
+            console.log("Document updated with ID: ", task.uuid);
             setTimeout(callback(), 50);
         })
         .catch(function(error) {

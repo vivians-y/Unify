@@ -271,6 +271,15 @@ label {
     left: 0;
 }
 
+#task-filters {
+    width: 100%;
+    height: 50px;
+    background-color: magenta;
+    position: fixed;
+    top: 95px;
+    left: 0;
+}
+
 .search-icon, #search_open {
     float: right;
     box-sizing: content-box;

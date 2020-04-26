@@ -71,33 +71,79 @@ function editFields() {
     let newLatitude = document.getElementById("profileLatitudeEdit").value;
     let newLongitude = document.getElementById("profileLongitudeEdit").value;
     let user = JSON.parse(sessionStorage.getItem("currentUser"));
-    if(newUsername != null){
-        user.username = newUsername;
-    }
-    if(newFirstName != null){
+    if(newFirstName != null && newFirstName.length > 0){
         user.firstName = newFirstName;
     }
-    if(newLastName != null){
+    if(newLastName != null && newLastName.length > 0){
         user.lastName = newLastName;
     }
-    if(newEmail != null){
+    if(newEmail != null && newEmail.length > 0){
         user.email = newEmail;
     }
-    if(newPhone != null){
+    if(newPhone != null && newPhone.length > 0){
         user.phoneNumber = newPhone;
     }
-    if(newLatitude != null){
+    if(newLatitude != null && newLatitude.length > 0 && !isNaN(newLatitude)){
         user.latitude = parseFloat(newLatitude);
     }
-    if(newLongitude != null){
+    if(newLongitude != null && newLongitude.length > 0 && !isNaN(newLongitude)){
         user.longitude = parseFloat(newLongitude);
     }
+    // username down here because you need to check if username is being used
+    if(newUsername != null && newUsername.length > 0){
+        console.log("checking old users");
+        // check old usernames
+        getAllUsers(function (oldUsers) {
+            console.log("getAllUsers callback");
 
-    updateUser(user, function () {
-        sessionStorage.setItem("currentUser", JSON.stringify(user));
-        // anything you want to do after the save here
-    });
-    updateFields();
+            // loop through old users
+            for (let i = 0; i < oldUsers.length; i++) {
+                if (oldUsers[i].username == newUsername) {
+                    // duplicate username
+                    console.log("new username already taken");
+                    return;
+                }
+            }
+
+            // newUsername is unique
+            console.log("new username has no match");
+            let oldUsername = user.username;
+            user.username = newUsername;
+
+            updateUser(user, function () {
+                sessionStorage.setItem("currentUser", JSON.stringify(user));
+                // anything you want to do after the save here
+                updateFields();
+
+                // update all the tasks with new username
+                getAllTasks(function (allTasks) {
+                    for (let i = 0; i < allTasks.length; i++) {
+                        if(allTasks[i].taskCreatorUsername == oldUsername){
+                            allTasks[i].taskCreatorUsername = newUsername;
+
+                            updateTask(allTasks[i], function () {
+                                console.log("task updated");
+                            });
+                        }
+                    }
+                })
+            });
+        });
+        updateUser(user, function () {
+            sessionStorage.setItem("currentUser", JSON.stringify(user));
+            // anything you want to do after the save here
+            updateFields();
+        });
+    }
+    else {
+        // don't need to change username
+        console.log("username else");
+        updateUser(user, function () {
+            sessionStorage.setItem("currentUser", JSON.stringify(user));
+            // anything you want to do after the save here
+            updateFields();
+        });
+    }
 }
 
 // // to get
